@@ -1,0 +1,196 @@
+<style>
+    @font-face{
+        font-family:foodplus;
+        src:url('/font/rsufont/RSU_Regular.ttf')
+    }
+    *{
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+        font-family: 'foodplus';
+    }
+    {{!-- set fullscreen --}}
+    html, body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        background-color: #fff;
+    }
+    #wrapper {
+        min-height: 100vh; 
+        min-width: 100%;
+    }
+
+    {{!-- Grid layout --}}
+    .container{
+        display: grid;
+        grid-template: 
+            'header header' 80px
+            'content1 content1' 3fr 
+            'content2 content2' 2fr
+            /1fr;
+        padding: 0;
+    }
+    header{
+        grid-area: header;
+    }
+    .content1{
+        grid-area: content1;
+        background-image: url(/images/Home/pexels-ella-olsson-blur.jpg);
+        /* Full height */
+        height: 100vh; 
+        
+        /* Center and scale the image nicely */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .content2{
+        grid-area: content2;
+    }
+    .img-full-scale{
+         /* Center and scale the image nicely */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .img-blur{
+        /* Add the blur effect */
+        filter: blur(3px);
+        -webkit-filter: blur(3px); 
+    }
+    {{!-- flex parent --}}
+    .flex-container{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .flex-container > .flex-items{
+        color: #fff;
+    }
+    .flex-items{
+        width: 500px;
+        height: 100%;
+    }
+    .flex-items-blur{
+        width: 600px;
+        height: auto;
+        padding: 30px 20px;
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0, 0.15);
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        border-radius: 25px;
+    }
+    .flex-items-box{
+        width: 450px;
+        height: auto;
+        background-color: #fff;
+
+        padding: 20px 50px;
+        border-radius: 25px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        /*shadow box*/
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
+
+    {{!-- wrapper --}}
+    .break {
+        flex-basis: 100%;
+        height: 0;
+    }
+    {{!-- button Accept,Upload,Next--}}
+    .button {
+        display: inline-block;
+        padding: 0.75rem 1.25rem;
+        border-radius: 10rem;
+        color: #fff;
+        text-transform: uppercase;
+        font-size: 1rem;
+        letter-spacing: 0.15rem;
+        transition: all 0.3s;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        width: 100%;
+        height: 40;
+        text-decoration: none;
+        margin-top: 10px;
+        margin-bottom: 5px;
+    }
+    .button:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #0d6efd;
+        border-radius: 10rem;
+        z-index: -2;
+    }
+    .button:before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0%;
+        height: 100%;
+        background-color: #ff7700;
+        transition: all 0.3s;
+        border-radius: 10rem;
+        z-index: -1;
+    }
+    .button:hover {
+        color: #fff;
+    }
+    .button:hover:before {
+        width: 100%;
+    }
+    {{!-- text --}}
+    #f_shadow{
+        text-shadow: 2px 2px 11px rgba(0, 0, 0, 0.8);
+        margin: 0;
+    }
+</style>
+<div class="container" id="wrapper">
+    <header>
+        {{> restaurant_header}}
+    </header>
+    <div class="content1">
+        <div class="flex-container" style="justify-content: space-evenly;align-items: center; padding: 50px 50px;">          
+            <div class="flex-items-blur">
+                <div class="flex-container" style="align-items: center; flex-direction: column;">
+                    <p id="f_shadow" style="color: white;font-weight: bolder; font-size: 5ch;">สั่งอาหารอร่อยได้ทุกเมื่อที่</p>
+                    <p id="f_shadow" style="color: #0d6efd;font-weight: bolder; font-size: 12ch;">FOOD+</p>
+                </div>
+                <div class="flex-container" style="justify-content: space-evenly;padding: 20px 20px;">
+                    <img src="/images/Home/app_store_badage/google-play-badge.svg" alt="" width="240">
+                    <img src="/images/Home/app_store_badage/apple-app-store-badge.svg" alt="" width="220">
+                </div>
+            </div>
+            <img src="/images/Home/Phone_mockup/Iphone X_Mockup.png" alt="" width="450">
+        </div>
+    </div>
+    <div class="content2">
+        <div class="flex-container" style="justify-content: space-evenly;">
+            <div class="flex-items-box" style="flex-direction: column;">
+                <img src="/images/Home/flat_delivery.jpg" alt="" width="350">
+                <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam rem placeat repellendus magnam ex assumenda consequuntur saepe! Facilis, aliquid ea!</h5>
+            </div>
+            <div class="flex-items-box" style="flex-direction: column;">
+                <img src="/images/Home/flat_eating.jpg" alt="" width="350">
+                <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque, fuga et nam doloremque a quo id ipsam dignissimos assumenda nobis.</h5>
+            </div>
+            <div class="flex-items-box" style="flex-direction: column;">
+                <img src="/images/Home/flat_ride.jpg" alt="" width="350">
+                <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis</h5>
+                <a href="/dri_register" class="button" style="text-align: center;">สมัครเลย</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

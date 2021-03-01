@@ -1,0 +1,148 @@
+<style>
+    @font-face{
+        font-family:foodplus;
+        src:url('/font/rsufont/RSU_Regular.ttf')
+    }
+    *{
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+        font-family: 'foodplus';
+    }
+    
+    {{!-- set fullscreen --}}
+    html, body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        background-color: #000;
+    }
+    #wrapper {
+        min-height: 100vh; 
+        min-width: 100%;
+    }
+    {{!-- Grid --}}
+    .container{
+        display: grid;
+        grid-template: 
+            'header header' 0.5fr
+            'main main'  4.5fr
+            /1fr;
+        font-weight: bold;
+        padding: 0;
+    }
+    header{
+        grid-area: header;
+    }
+    .main {
+        grid-area: main;
+        background: #000
+    }
+
+    {{!-- flexbox --}}
+    .flexbox-container{
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+    }
+    .flex-img-item{
+        display: flex;
+        max-width: 100%;
+        max-height: 100%;
+        background-color: #000;
+        margin-bottom: 20px;
+    }  
+    .flex-items{
+        display: flex;
+        flex-direction: column;
+        width: 500px;
+        height: 100%;
+        align-items: center;
+    }
+    {{!-- break wrapping --}}
+    .break {
+        flex-basis: 100%;
+        height: 0;
+    }
+    {{!-- input --}}
+    .form-control{
+        display: flex;
+        margin: 5px auto;
+        border: 2px solid #ffc000;
+        background-color: #000;
+        width: 400px;
+        border-radius: 25px;
+    }
+    {{!-- button --}}
+    .button {
+        display: inline-block;
+        padding: 0.75rem 1.25rem;
+        border-radius: 10rem;
+        color: #000;
+        text-transform: uppercase;
+        font-size: 1rem;
+        letter-spacing: 0.15rem;
+        transition: all 0.3s;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        width: 400px;
+        height: 40;
+        text-decoration: none;
+        margin-top: 10px;
+    }
+    .button:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #ffc000;
+        border-radius: 10rem;
+        z-index: -2;
+    }
+    .button:before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0%;
+        height: 100%;
+        background-color: #ff7700;
+        transition: all 0.3s;
+        border-radius: 10rem;
+        z-index: -1;
+    }
+    .button:hover {
+        color: #fff;
+    }
+    .button:hover:before {
+        width: 100%;
+    }
+</style>
+<div class="container" id="wrapper">
+    <header>
+        {{> driver_header}}
+    </header>
+    <section class="main">
+        <div class="flexbox-container">
+            <img src="/images/Driver/driver_main_edit.png" 
+            style="box-shadow: 0 2px 4px 0 #ffc000;" alt="" class="flex-img-item">
+            <div class="flex-items">
+                <h1 style="color: #ffc000;" style="align-self: flex-start;">เข้าสู่ระบบ</h1>
+                <input class="form-control" type="text" placeholder="Email" aria-label="default input example">
+                <input class="form-control" type="text" placeholder="Password" aria-label="default input example">
+                <a href="#" class="button" style="text-align: center;">เข้าสู่ระบบ</a>
+                <a href="/dri_register" class="button" style="text-align: center;">สมัครผู้ใช้ใหม่ คลิกที่นี่</a>               
+            </div>
+        </div>
+    </section>
+
+</div>
+
+ {{!-- footer{
+        grid-area: footer;
+        background: #e8b210;
+} --}}
