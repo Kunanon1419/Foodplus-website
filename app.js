@@ -36,15 +36,8 @@ app.get('/test', (req, res) => {
 })
 
 //Route
-    // index Route 
-app.get('/',(req,res)=>{
-    res.render('index',{
-        title:'User App',
-        users
-    });
-})
     // Home route
-app.get('/home', (req, res)=>{
+app.get('/', (req, res)=>{
     res.render('Home',{
         title: 'FoodPlus',
         layout:'main.handlebars',// different layout.
