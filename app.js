@@ -57,7 +57,7 @@ app.get('/dri_register',(req,res)=>{
 })
     // Driver login route
 app.get('/dri_login',(req,res)=>{
-    res.render('Driver_login')
+    res.render('Driver_Login')
 })
 
 
