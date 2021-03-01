@@ -1,0 +1,50 @@
+<style>
+    .flex-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    .flex-container > *{
+        text-shadow: 2px 2px 11px rgba(0, 0, 0, 0.2);
+    }
+    .btnOnIcon{
+        background: none;
+        border: none;
+    }
+    .modal-popup{
+        min-width: 800px;
+        width: auto;
+        height: auto;
+        padding: 25px 50px;
+        background-color: #fff;
+        border-radius: 25px;
+        position: fixed;
+        z-index: 999;
+        /*shadow box*/
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
+</style>
+<div class="modal-popup" id="mapModal">
+    <div class="flex-container" style="justify-content: space-between;">
+        <h3>ระบุตำแหน่งร้านค้าของคุณ</h3>
+        <button class="btnOnIcon" onclick="closeMap()"><i class="fa fa-times fa-lg" aria-hidden="true"></i></button>
+    </div>
+    <div class="flex-container" style="justify-content: space-evenly;align-items: center;">
+        <div id="map" style="width: 800px;height: 600px;"></div>
+        {{!-- Map javascript API , KEY: AIzaSyCYStQigvoniTVcOguKxKJCpSpya_CeNrA --}}
+        <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCYStQigvoniTVcOguKxKJCpSpya_CeNrA&callback=initMap"type="text/javascript"></script>
+    </div>
+</div>
+<script>
+    /*Google map function*/
+    let map;
+
+    function initMap() {
+        map = new google.maps.Map(document.getElementById("map"), {
+            center: { lat: -34.397, lng: 150.644 },
+            zoom: 8,
+        });
+    }
+</script>
