@@ -2,16 +2,24 @@
  * Module dependencies.
  */
 const express = require('express');
-const app     = express();
-const PORT = process.env.PORT || 5000;
-const bodyParser = require('body-parser');
-
 const path    = require('path');
-const users   = require('./Users');
-const moment = require('moment');
-const logger  = require('./middleware/logger');
 
+const PORT    = process.env.PORT || 5000;
+const cokieSession = require('cookie-session');
+const bcrypt = require('bcrypt');
+const dbConnection = require('./db_root_connection');
+const { body, validationResult } = require('express-validator');
+
+const bodyParser = require('body-parser');
+const moment = require('moment');
+/*Template engine*/
 const exphbs  = require('express-handlebars');
+/* Middleware*/
+const logger  = require('./middleware/logger');
+const users   = require('./Users');
+
+/*express app*/
+const app     = express();
 
 // all environments
     //  set the public (folder) as static in the server.js (include folder for using)
@@ -23,13 +31,13 @@ const exphbs  = require('express-handlebars');
     app.use('/api/users', require('./routes/api/users'));
         //server log
     app.listen(PORT,()=>{console.log('Server is running on port '+ PORT)});
-// Handles Middleware
-app.engine('handlebars', exphbs({
-    defaultLayout:'main',
-    layoutsDir: path.join(__dirname,'views/layouts'),
-    partialsDir: path.join(__dirname,'views/partials')
-}));
-app.set('view engine', 'handlebars');
+    // Handles Middleware
+    app.engine('handlebars', exphbs({
+        defaultLayout:'main',
+        layoutsDir: path.join(__dirname,'views/layouts'),
+        partialsDir: path.join(__dirname,'views/partials')
+    }));
+    app.set('view engine', 'handlebars');
 
 app.get('/test', (req, res) => {
     res.send('test server time ' + `${req.protocol}://${req.get('host')}${req.originalUrl}: ${moment().format()}`)
