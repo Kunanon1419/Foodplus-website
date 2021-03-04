@@ -239,7 +239,7 @@
     }
 </style>
 <div class="container" id="wrapper">
-    {{!-- map modal --}}
+    {{> checkbox_alert}}
     {{> mapAPI_modal}}
     <header>
         {{> restaurant_header}}
@@ -363,13 +363,12 @@
                     <input class="form-control" type="text" placeholder="" aria-label="default input example">
                     <label for="">ยืนยันรหัสผ่าน</label>
                     <input class="form-control" type="text" placeholder="" aria-label="default input example">
-
-                    {{!-- <form action="?" method="POST" id="reCAPTCHA"></form> --}}
-                    <div class="flex-container" style="justify-content: center;margin: 10px auto;">
-                        <form action="?" id="reCAPTCHA" style="margin-top: 5px;">
-                            <div class="g-recaptcha" data-callback="recaptchaCallback" data-sitekey="6Le9o0MaAAAAAGPyhr4ffu9oMT2A2OtRC86B0a1v"></div>
-                        </form>
-                    </div>
+                </div>
+                {{!-- <form action="?" method="POST" id="reCAPTCHA"></form> --}}
+                <div class="flex-container" style="justify-content: center;margin: 10px auto;">
+                    <form action="?" id="reCAPTCHA" style="margin-top: 5px;">
+                        <div class="g-recaptcha" data-callback="reCAPTCHACallback" data-sitekey="6Le9o0MaAAAAAGPyhr4ffu9oMT2A2OtRC86B0a1v"></div>
+                    </form>
                 </div>
                 <div class="flex-container">
                     <div class="form-check">
@@ -382,7 +381,7 @@
                     </div>
                     {{!-- <button id="submitBtn" type="submit" disabled class="btn btn-warning btn-lg btn-block" onclick="document.getElementById('reCAPTCHA').submit();">ลงทะเบียน</button> --}}
                 </div>
-                <button id="submitBtn" type="submit" disabled class="btn btn-warning btn-lg btn-block">ลงทะเบียน</button>
+                <button id="submitBtn" type="submit" class="btn btn-warning btn-lg btn-block" disabled>ลงทะเบียน</button>
             </div>
             
             {{!-- div 6 --}}
@@ -427,35 +426,32 @@
     </div>
 </div>
 <script>
+    $('#flexCheckDefault').prop('checked',false);
     $('.button').click(function(){
         $(this).parent().hide().next().show();//hide parent and show next
+        return false;
     });
-    $('#submitBtn').click(function(){
-        $('reCAPTCHA').submit();
-        $(this).parent().hide().next().show();//hide parent and show next
-    });
-
     $('.button-back').click(function(){
         $(this).parent().hide().prev().show();//hide parent and show previous
+        return false;
     });
-    /*next div function limit 19 div*/
-    $(document).ready(function nextDiv(){
-        $("a").click(function(e){
-            let btnId = e.target.id.toString();
-            let btnNum = parseInt(btnId.slice(-1));
-            let div_previous = '#div'+ btnNum;
-            let div_next = '#div'+ (btnNum + 1);
-            
-            if(!$(div_next).is(':visible')){
-                $(div_previous).css("display","none");
-                $(div_next).css("display","flex");
-            }
-        });   
-    })
 
     /*reCAPTCHA callback*/
-    function recaptchaCallback() {
+    function reCAPTCHACallback() {
         $('#submitBtn').removeAttr('disabled');
     };
-   
+
+    $('#submitBtn').click(function(){
+        let isChecked = $('#flexCheckDefault').is(':checked');
+        if(!isChecked){
+            alert('กรุณายอมรับเงื่อนไขและข้อกำหนด');
+        }
+        else{
+            $('#reCAPTCHA').submit();
+            $(this).parent().hide().next().show();///hide parent and show next 
+        }   
+        return false;   
+    });
+
+    
 </script>
