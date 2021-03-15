@@ -246,52 +246,95 @@
     </header>
     <div class="main">
         <div class="flex-container" style="min-height: 100vh;min-width: 100vh;">
-            {{!-- div 1 --}}
-            <div id="div1" class="flex-items-box">
-                <h1 id="head-font">ลงทะเบียนร้านเดลิเวอรี่</h1>
-                <div class="break"></div>
-                <div class="flex-item">
-                    <h5 >รายละเอียดผู้ติดต่อ</h5>
-                    <input class="form-control" type="text" placeholder="" aria-label="default input example">
-                    <p></p>
-                    <h5>หมายเลขโทรศัพท์</h5>
-                    <input class="form-control" type="text" placeholder="" aria-label="default input example">
-                    <p></p>
+            <form action="/api/res_user" method="post">
+                {{!-- div 1 --}}
+                <div id="div1" class="flex-items-box">
+                    <h1 id="head-font">ลงทะเบียนร้านเดลิเวอรี่</h1>
                     <div class="break"></div>
-                    <h5 >อีเมล</h5>
-                    <div class="break"></div>
-                    <input class="form-control" type="text" placeholder="" aria-label="default input example">
-                    <p></p>
+                    <h3>รายละเอียดผู้ติดต่อ</h3>
+                    <div class="flex-item">
+                        <h5>ชื่อผู้ติดต่อ</h5>
+                        <input name="res_name" class="form-control" type="text" placeholder="" aria-label="default input example">
+                        <p></p>
+                        <h5>หมายเลขโทรศัพท์</h5>
+                        <input name="res_tel" class="form-control" type="text" placeholder="" aria-label="default input example">
+                        <p></p>
+                        <div class="break"></div>
+                        <h5 >อีเมล</h5>
+                        <div class="break"></div>
+                        <input name="res_email" class="form-control" type="email" placeholder="" aria-label="default input example">
+                        <p></p>
+                    </div>
+                    <a id="next" href="#" class="button" style="text-align: center;">ถัดไป</a>
                 </div>
-                <a id="next" href="#" class="button" style="text-align: center;">ถัดไป</a>
-            </div>
 
-            {{!-- div 2 --}}
-            <div id="div2" class="flex-items-box">
-                <div class="flex-items">
-                    <h1 style="color:#ffc000">ยืนยันอีเมล</h1>
-                    <div style="font-family: 'foodplus-light'">
-                        <h5>กรอกรหัส OTP ส่งไปที่ example@mail.com (ref:xxx) เพื่อทำรายการต่อไป</h5>
-                        <div class="flex-container" style="justify-content: space-evenly">
-                            <h2>OTP</h2>
-                            <input class="form-control-sm" style="width: fit-content;" type="text" placeholder="" aria-label="default input example">
+                {{!-- div 2 --}}
+                <div id="div2" class="flex-items-box">
+                    <div class="flex-items">
+                        <h1 style="color:#ffc000">ยืนยันอีเมล</h1>
+                        <div style="font-family: 'foodplus-light'">
+                            <h5>กรอกรหัส OTP ส่งไปที่ example@mail.com (ref:xxx) เพื่อทำรายการต่อไป</h5>
+                            <div class="flex-container" style="justify-content: space-evenly">
+                                <h2>OTP</h2>
+                                <input class="form-control-sm" style="width: fit-content;" type="text" placeholder="" aria-label="default input example">
+                            </div>
                         </div>
                     </div>
+                    <a id="next" href="#" class="button" style="text-align: center;">ถัดไป</a>   
                 </div>
-                <a id="next" href="#" class="button" style="text-align: center;">ถัดไป</a>   
-            </div>
 
-            {{!-- div 3 --}}
-            <div id="div3" class="flex-items-box">
-                <h1 id="head-font">ลงทะเบียนร้านเดลิเวอรี่</h1>
-                <div class="break"></div>
-                <h3>รายละเอียดธุรกิจ</h3>
-                <div class="flex-item">
-                    <h5 >ชื่อร้าน</h5>
+                {{!-- div 3 --}}
+                <div id="div3" class="flex-items-box">
+                    <h1 id="head-font">ลงทะเบียนร้านเดลิเวอรี่</h1>
+                    <div class="break"></div>
+                    <h3>รายละเอียดธุรกิจ</h3>
+                    <div class="flex-item">
+                        <h5 >ชื่อร้าน</h5>
+                        <input class="form-control" type="text" placeholder="" aria-label="default input example">
+                        <div class="flex-container" style="margin: 10px auto;">
+                            <div class="flex-item">
+                                <h5 >ประเภทธุรกิจ</h5>
+                                <select class="selectpicker" title="เลือกประเภทธุรกิจ" >
+                                    <option>Mustard</option>
+                                    <option>Ketchup</option>
+                                    <option>Relish</option>
+                                </select>
+                            </div>
+                            <div class="flex-item">
+                                <h5 >หมวดหมู่</h5>
+                                <select class="selectpicker" title="เลือกหมวดหมู่" >
+                                    <option>Mustard</option>
+                                    <option>Ketchup</option>
+                                    <option>Relish</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="break"></div>
+                    </div>
+                    <a id="next" href="#" class="button" style="text-align: center;">ถัดไป</a>
+                </div>
+
+                {{!-- div 4 --}}
+                <div class="flex-items-box" id="div4">
+                    <h1 id="head-font">ลงทะเบียนร้านเดลิเวอรี่</h1>
+                    <div class="break"></div>
+                    <h3>ที่ตั้งธุรกิจ</h3>
+                    <div class="form-control">
+                        <div class="flex-container" style="justify-content: space-evenly;">
+                            <input id="mapInput" style="border: none;width:400px ;" type="text" 
+                                placeholder="พิมพ์ชื่อร้าน หรือสถานที่ใกล้เคียงเพื่อหาร้าน" aria-label="default input example">
+                            <button id="btnOpenModal" class="btnOnIcon" data-toggle="modal" data-target="#mapModal">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <h5 style="margin-top: 10px;">ที่อยู่ธุรกิจ</h5>
+                    <input class="form-control" type="text" placeholder="" aria-label="default input example">
+                    <h5 style="margin-top: 10px;">จังหวัด</h5>
                     <input class="form-control" type="text" placeholder="" aria-label="default input example">
                     <div class="flex-container" style="margin: 10px auto;">
                         <div class="flex-item">
-                            <h5 >ประเภทธุรกิจ</h5>
+                            <h5 >แขวง/อำเภอ</h5>
                             <select class="selectpicker" title="เลือกประเภทธุรกิจ" >
                                 <option>Mustard</option>
                                 <option>Ketchup</option>
@@ -299,7 +342,7 @@
                             </select>
                         </div>
                         <div class="flex-item">
-                            <h5 >หมวดหมู่</h5>
+                            <h5 >เขต/ตำบล</h5>
                             <select class="selectpicker" title="เลือกหมวดหมู่" >
                                 <option>Mustard</option>
                                 <option>Ketchup</option>
@@ -308,120 +351,80 @@
                         </div>
                     </div>
                     <div class="break"></div>
+                    <a id="next" href="#" class="button" style="text-align: center;">ต่อไป</a>
                 </div>
-                <a id="next" href="#" class="button" style="text-align: center;">ถัดไป</a>
-            </div>
 
-            {{!-- div 4 --}}
-            <div class="flex-items-box" id="div4">
-                <h1 id="head-font">ลงทะเบียนร้านเดลิเวอรี่</h1>
-                <div class="break"></div>
-                <h3>ที่ตั้งธุรกิจ</h3>
-                <div class="form-control">
-                    <div class="flex-container" style="justify-content: space-evenly;">
-                        <input id="mapInput" style="border: none;width:400px ;" type="text" 
-                            placeholder="พิมพ์ชื่อร้าน หรือสถานที่ใกล้เคียงเพื่อหาร้าน" aria-label="default input example">
-                        <button id="btnOpenModal" class="btnOnIcon" data-toggle="modal" data-target="#mapModal">
-                            <i class="fa fa-search" aria-hidden="true"></i>
-                        </button>
+                {{!-- div 5 --}}
+                <div class="flex-items-box" id="div5">
+                    <div style="text-align: center;">
+                        <h1 style="color: #ffc000;">ลงทะเบียนร้านเดลิเวอรี่</h1>
                     </div>
-                </div>
-                <h5 style="margin-top: 10px;">ที่อยู่ธุรกิจ</h5>
-                <input class="form-control" type="text" placeholder="" aria-label="default input example">
-                <h5 style="margin-top: 10px;">จังหวัด</h5>
-                <input class="form-control" type="text" placeholder="" aria-label="default input example">
-                <div class="flex-container" style="margin: 10px auto;">
-                    <div class="flex-item">
-                        <h5 >แขวง/อำเภอ</h5>
-                        <select class="selectpicker" title="เลือกประเภทธุรกิจ" >
-                            <option>Mustard</option>
-                            <option>Ketchup</option>
-                            <option>Relish</option>
-                        </select>
+                    <div class="break"></div>
+                    <div class="flex-items">
+                        <label for="">รหัสผ่าน</label>
+                        <input class="form-control" type="text" placeholder="" aria-label="default input example">
+                        <label for="">ยืนยันรหัสผ่าน</label>
+                        <input class="form-control" type="text" placeholder="" aria-label="default input example">
                     </div>
-                    <div class="flex-item">
-                        <h5 >เขต/ตำบล</h5>
-                        <select class="selectpicker" title="เลือกหมวดหมู่" >
-                            <option>Mustard</option>
-                            <option>Ketchup</option>
-                            <option>Relish</option>
-                        </select>
+                    {{!-- <form action="?" method="POST" id="reCAPTCHA"></form> --}}
+                    <div class="flex-container" style="justify-content: center;margin: 10px auto;">
+                        {{!-- <form action="?" id="reCAPTCHA" style="margin-top: 5px;">
+                            <div class="g-recaptcha" data-callback="reCAPTCHACallback" data-sitekey="6Le9o0MaAAAAAGPyhr4ffu9oMT2A2OtRC86B0a1v"></div>
+                        </form> --}}
                     </div>
-                </div>
-                <div class="break"></div>
-                <a id="next" href="#" class="button" style="text-align: center;">ต่อไป</a>
-            </div>
-
-            {{!-- div 5 --}}
-            <div class="flex-items-box" id="div5">
-                <div style="text-align: center;">
-                    <h1 style="color: #ffc000;">ลงทะเบียนร้านเดลิเวอรี่</h1>
-                </div>
-                <div class="break"></div>
-                <div class="flex-items">
-                    <label for="">รหัสผ่าน</label>
-                    <input class="form-control" type="text" placeholder="" aria-label="default input example">
-                    <label for="">ยืนยันรหัสผ่าน</label>
-                    <input class="form-control" type="text" placeholder="" aria-label="default input example">
-                </div>
-                {{!-- <form action="?" method="POST" id="reCAPTCHA"></form> --}}
-                <div class="flex-container" style="justify-content: center;margin: 10px auto;">
-                    <form action="?" id="reCAPTCHA" style="margin-top: 5px;">
-                        <div class="g-recaptcha" data-callback="reCAPTCHACallback" data-sitekey="6Le9o0MaAAAAAGPyhr4ffu9oMT2A2OtRC86B0a1v"></div>
-                    </form>
-                </div>
-                <div class="flex-container">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                            ข้าพเจ้ายอมรับ <a href="#" style="color: #ffc000;">เงื่อนไขและข้อตกลง</a> ในการใช้บริการ 
-                            <br>
-                            Food Merchant Management
-                        </label>
-                    </div>
-                    {{!-- <button id="submitBtn" type="submit" disabled class="btn btn-warning btn-lg btn-block" onclick="document.getElementById('reCAPTCHA').submit();">ลงทะเบียน</button> --}}
-                </div>
-                <button id="submitBtn" type="submit" class="btn btn-warning btn-lg btn-block" disabled>ลงทะเบียน</button>
-            </div>
-            
-            {{!-- div 6 --}}
-            <div class="flex-items-box" id="div6" style="width: 800px;height: 710px;justify-content: center;">
-                <div class="flex-container" style="justify-content: center;">
-                    <div style="display: flex;flex-wrap:wrap">
-                        <div class="flex-item" >
-                            <div style="border: 5px solid #ffc000;border-radius: 5px;margin:0px auto;width: 100%;"></div>
-                            <h3 id="head-font">ส่งเอกสาร</h3>
-                            <span>กรุณาแนบเอกสารที่ใช้ในการสมัครดังนี้ <br>
-                            1.สำเนาบัตรประชาชน
-                            </span>
-                            <a href="#" class="button" style="text-align: center;">แนบไฟล์</a>
-                            <input id="Id_exp_datepicker" placeholder="วันหมดอายุเอกสาร" style="width: 300px;">
-                            <br>
-
-                            <span>2.ใบประกอบการร้านค้า</span>
-                            <a href="#" class="button" style="text-align: center;">แนบไฟล์</a>
-                            <br>
-
-                            <span>3.สำเนาทะเบียนบ้านของร้าน</span>
-                            <a href="#" class="button" style="text-align: center;">แนบไฟล์</a>
-                            <br>
-
-                            <span>4.รูปถ่ายร้านค้า</span>
-                            <a href="#" class="button" style="text-align: center;">แนบไฟล์</a>
-                            <br>
-                            
-                            <span>5.สำเนาหน้าสมุดธนาคาร</span>
-                            <a href="#" class="button" style="text-align: center;">แนบไฟล์</a>
+                    <div class="flex-container">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                ข้าพเจ้ายอมรับ <a href="#" style="color: #ffc000;">เงื่อนไขและข้อตกลง</a> ในการใช้บริการ 
+                                <br>
+                                Food Merchant Management
+                            </label>
                         </div>
-                        <div class="flex-item">
-                            <div style="border: 5px solid #ffc000;border-radius: 5px;margin:0px auto; width: 100%;"></div>
-                            <h3 id="head-font">ลงทะเบียนใกล้จะเสร็จสิ้นแล้ว</h3>
-                            <p>กรุณาดาวน์โหลดแอปพลิเคชั่น Food Merchant <br> เพื่อดำเนินการอัปโหลดเอกสาร</p>
-                        </div>
+                        {{!-- <button id="submitBtn" type="submit" disabled class="btn btn-warning btn-lg btn-block" onclick="document.getElementById('reCAPTCHA').submit();">ลงทะเบียน</button> --}}
                     </div>
-                    <a href="#" class="button" style="text-align: center;width:fit-content;max-width: 300px;">ตกลง</a>
-                </div>  
-            </div>
+                    <button id="submitBtn" type="submit" class="btn btn-warning btn-lg btn-block">ลงทะเบียน</button>
+                </div>
+                
+                {{!-- div 6 --}}
+                <div class="flex-items-box" id="div6" style="width: 800px;height: 710px;justify-content: center;">
+                    <div class="flex-container" style="justify-content: center;">
+                        <div style="display: flex;flex-wrap:wrap">
+                            <div class="flex-item" >
+                                <div style="border: 5px solid #ffc000;border-radius: 5px;margin:0px auto;width: 100%;"></div>
+                                <h3 id="head-font">ส่งเอกสาร</h3>
+                                <span>กรุณาแนบเอกสารที่ใช้ในการสมัครดังนี้ <br>
+                                1.สำเนาบัตรประชาชน
+                                </span>
+                                <a href="#" class="button" style="text-align: center;">แนบไฟล์</a>
+                                <input id="Id_exp_datepicker" placeholder="วันหมดอายุเอกสาร" style="width: 300px;">
+                                <br>
+
+                                <span>2.ใบประกอบการร้านค้า</span>
+                                <a href="#" class="button" style="text-align: center;">แนบไฟล์</a>
+                                <br>
+
+                                <span>3.สำเนาทะเบียนบ้านของร้าน</span>
+                                <a href="#" class="button" style="text-align: center;">แนบไฟล์</a>
+                                <br>
+
+                                <span>4.รูปถ่ายร้านค้า</span>
+                                <a href="#" class="button" style="text-align: center;">แนบไฟล์</a>
+                                <br>
+                                
+                                <span>5.สำเนาหน้าสมุดธนาคาร</span>
+                                <a href="#" class="button" style="text-align: center;">แนบไฟล์</a>
+                            </div>
+                            <div class="flex-item">
+                                <div style="border: 5px solid #ffc000;border-radius: 5px;margin:0px auto; width: 100%;"></div>
+                                <h3 id="head-font">ลงทะเบียนใกล้จะเสร็จสิ้นแล้ว</h3>
+                                <p>กรุณาดาวน์โหลดแอปพลิเคชั่น Food Merchant <br> เพื่อดำเนินการอัปโหลดเอกสาร</p>
+                            </div>
+                        </div>
+                    </div>  
+                    <button id="submitForm" type="submit" class="btn btn-warning btn-lg btn-block">ตกลง</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -447,7 +450,7 @@
             alert('กรุณายอมรับเงื่อนไขและข้อกำหนด');
         }
         else{
-            $('#reCAPTCHA').submit();
+            //$('#reCAPTCHA').submit();
             $(this).parent().hide().next().show();///hide parent and show next 
         }   
         return false;   
