@@ -24,23 +24,26 @@
         width: 100%;
         margin: 0;
         padding: 0;
-        background-color: #fff;
     }
     #wrapper {
         min-height: 100vh; 
         min-width: 100%;
     }
-    {{!-- head-font --}}
+    {{!-- font_style --}}
     #head-font{
         color: #ffc000;
         font-weight: bold;
+    }
+    #upload-style{
+        color: #fff;
+        text-shadow: 2px 2px 11px rgba(0, 0, 0, 0.3);
     }
     {{!-- Grid layout --}}
     .container{
         display: grid;
         grid-template: 
-            'header header' 0.2fr 
-            'main main'  4.8fr
+            'header header' 1fr 
+            'main main'  9fr
             /1fr;
         padding: 0;
     }
@@ -49,15 +52,13 @@
     }
     .main{
         grid-area: main;
-        background-image: url(/images/Restaurant/food.jpg);
+        background-image: url(/images/Restaurant/food-compress.jpg);
         background-size: cover;
         background-repeat: no-repeat;
-
     }
     {{!-- flex parent --}}
     .flex-container{
         display: flex;
-        justify-content: center;
         align-items: center;
         flex-wrap: wrap;
     }
@@ -66,7 +67,7 @@
         
     }
     .flex-container > *{
-        text-shadow: 2px 2px 11px rgba(0, 0, 0, 0.2);
+        text-shadow: 2px 2px 11px rgba(0, 0, 0, 0.1);
     }
     .flex-img-item{
         max-width: 100vh;
@@ -86,7 +87,6 @@
         align-items: flex-start; 
         flex-wrap: wrap;
         flex-direction: column;
-        margin: 5px 15px;
     }
 
     {{!-- wrapper --}}
@@ -112,7 +112,6 @@
     .input-group-addon{
         border-radius: 10px;
     }
-    
     .btnOnIcon{
         background: none;
         border: none;
@@ -134,10 +133,11 @@
         width: 100%;
         height: 40px;
         text-decoration: none;
-        margin-top: 10px;
-        margin-bottom: 5px;
+        /*margin-top: 10px;
+        margin-bottom: 5px;*/
+        margin: auto;
         box-shadow: 2px 2px 11px rgba(0, 0, 0, 0.2);
-        text-shadow: 2px 2px 11px rgba(0, 0, 0, 0.2);
+        text-shadow: 2px 2px 11px rgba(0, 0, 0, 0.5);
     }
     .button:after {
         content: "";
@@ -164,57 +164,9 @@
     }
     .button:hover {
         color: #fff;
+        text-decoration: none;
     }
     .button:hover:before {
-        width: 100%;
-    }
-    
-    {{!-- button Back--}}
-    .button-back {
-        display: inline-block;
-        padding: 0.75rem 1.25rem;
-        border-radius: 10rem;
-        color: #000;
-        text-transform: uppercase;
-        font-size: 1rem;
-        letter-spacing: 0.15rem;
-        transition: all 0.3s;
-        position: relative;
-        overflow: hidden;
-        z-index: 1;
-        width: 100%;
-        height: 40;
-        text-decoration: none;
-        margin-top: 10px;
-        margin-bottom: 5px;
-    }
-    .button-back:after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: #dddddd;
-        border-radius: 10rem;
-        z-index: -2;
-    }
-    .button-back:before {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 0%;
-        height: 100%;
-        background-color: red;
-        transition: all 0.3s;
-        border-radius: 10rem;
-        z-index: -1;
-    }
-    .button-back:hover {
-        color: #fff;
-    }
-    .button-back:hover:before {
         width: 100%;
     }
 
@@ -245,7 +197,7 @@
         {{> restaurant_header}}
     </header>
     <div class="main">
-        <div class="flex-container" style="min-height: 100vh;min-width: 100vh;">
+        <div class="flex-container" style="justify-content: center; min-height: 100vh;min-width: 100vh;">
             <form action="/api/res_user" method="post">
                 {{!-- div 1 --}}
                 <div id="div1" class="flex-items-box">
@@ -253,16 +205,26 @@
                     <div class="break"></div>
                     <h3>รายละเอียดผู้ติดต่อ</h3>
                     <div class="flex-item">
-                        <h5>ชื่อผู้ติดต่อ</h5>
-                        <input name="res_name" class="form-control" type="text" placeholder="" aria-label="default input example">
+                        <div class="flex-container" style="justify-content: space-between;">
+                            <div class="flex-item">
+                                <h5>ชื่อ</h5>
+                                <div class="break"></div>
+                                <input name="first_name" class="form-control" type="text" placeholder="" aria-label="default input example" style="width: 235px;">
+                            </div>
+                            <div class="flex-item" style="flex-direction: ;">
+                                <h5>นามสกุล</h5>
+                                <div class="break"></div>
+                                <input name="last_name" class="form-control" type="text" placeholder="" aria-label="default input example" style="width: 235px;">
+                            </div>
+                        </div>
                         <p></p>
                         <h5>หมายเลขโทรศัพท์</h5>
-                        <input name="res_tel" class="form-control" type="text" placeholder="" aria-label="default input example">
+                        <input name="tel" class="form-control" type="text" placeholder="" aria-label="default input example">
                         <p></p>
                         <div class="break"></div>
                         <h5 >อีเมล</h5>
                         <div class="break"></div>
-                        <input name="res_email" class="form-control" type="email" placeholder="" aria-label="default input example">
+                        <input name="email" class="form-control" type="email" placeholder="" aria-label="default input example">
                         <p></p>
                     </div>
                     <a id="next" href="#" class="button" style="text-align: center;">ถัดไป</a>
@@ -276,7 +238,7 @@
                             <h5>กรอกรหัส OTP ส่งไปที่ example@mail.com (ref:xxx) เพื่อทำรายการต่อไป</h5>
                             <div class="flex-container" style="justify-content: space-evenly">
                                 <h2>OTP</h2>
-                                <input class="form-control-sm" style="width: fit-content;" type="text" placeholder="" aria-label="default input example">
+                                <input name="otp" class="form-control-sm" style="width: fit-content;" type="text" placeholder="" aria-label="default input example">
                             </div>
                         </div>
                     </div>
@@ -290,22 +252,14 @@
                     <h3>รายละเอียดธุรกิจ</h3>
                     <div class="flex-item">
                         <h5 >ชื่อร้าน</h5>
-                        <input class="form-control" type="text" placeholder="" aria-label="default input example">
+                        <input name="restaurant_name" class="form-control" type="text" placeholder="" aria-label="default input example">
                         <div class="flex-container" style="margin: 10px auto;">
-                            <div class="flex-item">
+                            <div class="flex-item" style="width: 480px;">
                                 <h5 >ประเภทธุรกิจ</h5>
-                                <select class="selectpicker" title="เลือกประเภทธุรกิจ" >
-                                    <option>Mustard</option>
-                                    <option>Ketchup</option>
-                                    <option>Relish</option>
-                                </select>
-                            </div>
-                            <div class="flex-item">
-                                <h5 >หมวดหมู่</h5>
-                                <select class="selectpicker" title="เลือกหมวดหมู่" >
-                                    <option>Mustard</option>
-                                    <option>Ketchup</option>
-                                    <option>Relish</option>
+                                <select name="restaurant_type_name" class="custom-select" title="เลือกประเภทธุรกิจ">
+                                    {{#each res_type}}
+                                        <option>{{this}}</option>
+                                    {{/each}}
                                 </select>
                             </div>
                         </div>
@@ -319,34 +273,34 @@
                     <h1 id="head-font">ลงทะเบียนร้านเดลิเวอรี่</h1>
                     <div class="break"></div>
                     <h3>ที่ตั้งธุรกิจ</h3>
-                    <div class="form-control">
-                        <div class="flex-container" style="justify-content: space-evenly;">
-                            <input id="mapInput" style="border: none;width:400px ;" type="text" 
-                                placeholder="พิมพ์ชื่อร้าน หรือสถานที่ใกล้เคียงเพื่อหาร้าน" aria-label="default input example">
-                            <button id="btnOpenModal" class="btnOnIcon" data-toggle="modal" data-target="#mapModal">
+                    <h5 style="margin-top: 10px;">เลือกตำแหน่งร้านจากแผนที่</h5>
+                    <div class="input-group">
+                        <input name="location" type="text" class="form-control" placeholder="พิมพ์ชื่อร้าน หรือสถานที่ใกล้เคียงเพื่อหาร้าน" aria-label="Recipient's username" aria-describedby="button-addon2" style="width: 415px;">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target="#mapModal">
                                 <i class="fa fa-search" aria-hidden="true"></i>
                             </button>
                         </div>
                     </div>
+
                     <h5 style="margin-top: 10px;">ที่อยู่ธุรกิจ</h5>
-                    <input class="form-control" type="text" placeholder="" aria-label="default input example">
+                    <input name="address" class="form-control" type="text" placeholder="" aria-label="default input example">
+
                     <h5 style="margin-top: 10px;">จังหวัด</h5>
-                    <input class="form-control" type="text" placeholder="" aria-label="default input example">
+                    <select id="province" name="province" class="custom-select" >
+                        <option selected>กรุณาเลือกจังหวัด</option>
+                    </select>
                     <div class="flex-container" style="margin: 10px auto;">
-                        <div class="flex-item">
+                        <div class="flex-item" style="width: 235px;">
                             <h5 >แขวง/อำเภอ</h5>
-                            <select class="selectpicker" title="เลือกประเภทธุรกิจ" >
-                                <option>Mustard</option>
-                                <option>Ketchup</option>
-                                <option>Relish</option>
+                            <select id="amphur" name="amphur" class="custom-select" style="margin-right: 4px;">
+                                <option></option>
                             </select>
                         </div>
-                        <div class="flex-item">
+                        <div class="flex-item" style="width: 235px;">
                             <h5 >เขต/ตำบล</h5>
-                            <select class="selectpicker" title="เลือกหมวดหมู่" >
-                                <option>Mustard</option>
-                                <option>Ketchup</option>
-                                <option>Relish</option>
+                            <select id="district" name="district" class="custom-select" style="margin-left: 4px;">
+                                <option></option>
                             </select>
                         </div>
                     </div>
@@ -362,9 +316,24 @@
                     <div class="break"></div>
                     <div class="flex-items">
                         <label for="">รหัสผ่าน</label>
-                        <input class="form-control" type="text" placeholder="" aria-label="default input example">
+                        <div class="input-group">
+                            <input name="password" type="password" class="form-control" placeholder="กรุณาระบุรหัสผ่านขั้นต่ำ 8-16 ตัวอักษรหรือตัวเลข" aria-label="Recipient's username" aria-describedby="button-addon2" style="width: 415px;">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button" data-toggle="" data-target="">
+                                    <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <p></p>
                         <label for="">ยืนยันรหัสผ่าน</label>
-                        <input class="form-control" type="text" placeholder="" aria-label="default input example">
+                        <div class="input-group">
+                            <input name="confirm_password" type="password" class="form-control" placeholder="กรุณาระบุรหัสผ่านอีกครั้งเพื่อยืนยัน" aria-label="Recipient's username" aria-describedby="button-addon2" style="width: 415px;">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button" data-toggle="" data-target="">
+                                    <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                     {{!-- <form action="?" method="POST" id="reCAPTCHA"></form> --}}
                     <div class="flex-container" style="justify-content: center;margin: 10px auto;">
@@ -372,7 +341,7 @@
                             <div class="g-recaptcha" data-callback="reCAPTCHACallback" data-sitekey="6Le9o0MaAAAAAGPyhr4ffu9oMT2A2OtRC86B0a1v"></div>
                         </form> --}}
                     </div>
-                    <div class="flex-container">
+                    <div class="flex-container" style="justify-content: center;">
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                             <label class="form-check-label" for="flexCheckDefault">
@@ -381,59 +350,132 @@
                                 Food Merchant Management
                             </label>
                         </div>
+                        <p></p>
                         {{!-- <button id="submitBtn" type="submit" disabled class="btn btn-warning btn-lg btn-block" onclick="document.getElementById('reCAPTCHA').submit();">ลงทะเบียน</button> --}}
                     </div>
                     <button id="submitBtn" type="submit" class="btn btn-warning btn-lg btn-block">ลงทะเบียน</button>
                 </div>
                 
                 {{!-- div 6 --}}
-                <div class="flex-items-box" id="div6" style="width: 800px;height: 710px;justify-content: center;">
-                    <div class="flex-container" style="justify-content: center;">
-                        <div style="display: flex;flex-wrap:wrap">
-                            <div class="flex-item" >
+                <div class="flex-items-box" id="div6">
+                    <div class="flex-container">
+                        <div style="display: flex;">
+                            <div class="flex-item">
                                 <div style="border: 5px solid #ffc000;border-radius: 5px;margin:0px auto;width: 100%;"></div>
+                                <p></p>
                                 <h3 id="head-font">ส่งเอกสาร</h3>
                                 <span>กรุณาแนบเอกสารที่ใช้ในการสมัครดังนี้ <br>
                                 1.สำเนาบัตรประชาชน
                                 </span>
-                                <a href="#" class="button" style="text-align: center;">แนบไฟล์</a>
-                                <input id="Id_exp_datepicker" placeholder="วันหมดอายุเอกสาร" style="width: 300px;">
-                                <br>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <button class="btn btn-warning" type="button" id="upload-style">
+                                            <i class="fa fa-upload"></i> แนบไฟล์
+                                        </button>
+                                    </div>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="Copy_Id_card_number">
+                                        <label class="custom-file-label" for="Copy_Id_card_number">Choose file</label>
+                                    </div>
+                                </div>
+                                <input id="Id_exp_datepicker" onkeydown="return false"  placeholder="วันหมดอายุเอกสาร" style="width: 300px;">
+                                <p></p>
 
                                 <span>2.ใบประกอบการร้านค้า</span>
-                                <a href="#" class="button" style="text-align: center;">แนบไฟล์</a>
-                                <br>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <button class="btn btn-warning" type="button" id="upload-style">
+                                            <i class="fa fa-upload"></i> แนบไฟล์
+                                        </button>
+                                    </div>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="Restaurant_business_ license">
+                                        <label class="custom-file-label" for="Restaurant_business_ license">Choose file</label>
+                                    </div>
+                                </div>
 
+                                <input type="file" id="copy_house_registration  " style="display:none;" />
                                 <span>3.สำเนาทะเบียนบ้านของร้าน</span>
-                                <a href="#" class="button" style="text-align: center;">แนบไฟล์</a>
-                                <br>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <button class="btn btn-warning" type="button" id="upload-style">
+                                            <i class="fa fa-upload"></i> แนบไฟล์
+                                        </button>
+                                    </div>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="Copy_res_house_registration">
+                                        <label class="custom-file-label" for="Copy_res_house_registration">Choose file</label>
+                                    </div>
+                                </div>
+
 
                                 <span>4.รูปถ่ายร้านค้า</span>
-                                <a href="#" class="button" style="text-align: center;">แนบไฟล์</a>
-                                <br>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <button class="btn btn-warning" type="button" id="upload-style">
+                                            <i class="fa fa-upload"></i> แนบไฟล์
+                                        </button>
+                                    </div>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="Restaurant_Photo">
+                                        <label class="custom-file-label" for="Restaurant_Photo">Choose file</label>
+                                    </div>
+                                </div>
                                 
                                 <span>5.สำเนาหน้าสมุดธนาคาร</span>
-                                <a href="#" class="button" style="text-align: center;">แนบไฟล์</a>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <button class="btn btn-warning" type="button" id="upload-style">
+                                            <i class="fa fa-upload"></i> แนบไฟล์
+                                        </button>
+                                    </div>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="Copy_bank_book">
+                                        <label class="custom-file-label" for="Copy_bank_book">Choose file</label>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="flex-item">
-                                <div style="border: 5px solid #ffc000;border-radius: 5px;margin:0px auto; width: 100%;"></div>
-                                <h3 id="head-font">ลงทะเบียนใกล้จะเสร็จสิ้นแล้ว</h3>
-                                <p>กรุณาดาวน์โหลดแอปพลิเคชั่น Food Merchant <br> เพื่อดำเนินการอัปโหลดเอกสาร</p>
-                            </div>
+                            
+                        </div>
+                        <div class="flex-item" style="margin-left: 50px;align-self: flex-start;">
+                            <div style="border: 5px solid #ffc000;border-radius: 5px;margin:0px auto; width: 100%;"></div>
+                            <p></p>
+                            <h3 id="head-font">ลงทะเบียนใกล้จะเสร็จสิ้นแล้ว</h3>
+                            <p>กรุณาดาวน์โหลดแอปพลิเคชั่น Food Merchant <br> เพื่อดำเนินการอัปโหลดเอกสาร</p>
+                            <button id="submitForm" type="submit" class="btn btn-warning btn-lg btn-block" 
+                            style="color: #fff; text-shadow: 2px 2px 11px rgba(0, 0, 0, 0.3);">ตกลง</button> 
                         </div>
                     </div>  
-                    <button id="submitForm" type="submit" class="btn btn-warning btn-lg btn-block">ตกลง</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+<script type="text/javascript" src="/auto_province/AutoProvince.min.js"></script>
 <script>
+     // Call Auto Province Function
+    $(document).ready(function(){
+        $('body').AutoProvince({
+            PROVINCE:		'#province', // select div สำหรับรายชื่อจังหวัด
+            AMPHUR:			'#amphur', // select div สำหรับรายชื่ออำเภอ
+            DISTRICT:		'#district', // select div สำหรับรายชื่อตำบล
+            POSTCODE:		'#postcode', // input field สำหรับรายชื่อรหัสไปรษณีย์
+            GEOGRAPHY:		'#geography', // input field แสดงภาค
+            CURRENT_PROVINCE:4, //  แสดงค่าเริ่มต้น ใส่ไอดีจังหวัดที่เคยเลือกไว้
+            CURRENT_AMPHUR:4, // แสดงค่าเริ่มต้น  ใส่ไอดีอำเภอที่เคยเลือกไว้
+            CURRENT_DISTRICT:1, // แสดงค่าเริ่มต้น  ใส่ไอดีตำบลที่เคยเลือกไว้
+            arrangeByName:	true // กำหนดให้เรียงตามตัวอักษร
+        });  
+    })
+    // set default checkbox to uncheck
     $('#flexCheckDefault').prop('checked',false);
+
+    // btn goto next element
     $('.button').click(function(){
         $(this).parent().hide().next().show();//hide parent and show next
         return false;
     });
+    // btn goto previous element
     $('.button-back').click(function(){
         $(this).parent().hide().prev().show();//hide parent and show previous
         return false;
@@ -444,6 +486,7 @@
         $('#submitBtn').removeAttr('disabled');
     };
 
+    // checkbox and reCAPTCHA validation
     $('#submitBtn').click(function(){
         let isChecked = $('#flexCheckDefault').is(':checked');
         if(!isChecked){

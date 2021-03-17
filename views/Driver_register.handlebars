@@ -228,6 +228,9 @@
             <img src="/images/Driver/driver_main_edit.png" 
             style="box-shadow: 0 2px 4px 0 #ffc000;" alt="" class="flex-img-item">
         </div>
+        {{!-- <div class="flex-container">
+            เอาทั้งหมดมาคลุมในนี้
+        </div> --}}
         <div class="flex-container" id="div1">
             <h2 style="color: #ffc000;">ลงทะเบียนผู้ขับ</h2>
             <div class="break"></div>
@@ -326,10 +329,10 @@
                 <input class="form-control" type="text" placeholder="" aria-label="default input example">
                 {{!-- <form action="?" method="POST" id="reCAPTCHA"></form> --}}
                 <div class="flex-container" style="justify-content: center;">
-                    <form action="?" id="reCAPTCHA" style="margin-top: 5px;">
+                    {{!-- <form action="?" id="reCAPTCHA" style="margin-top: 5px;">
                         <div class="g-recaptcha" data-callback="recaptchaCallback" data-sitekey="6Le9o0MaAAAAAGPyhr4ffu9oMT2A2OtRC86B0a1v"></div>
-                    </form> 
-                    <button id="submitBtn" type="submit" disabled class="btn btn-warning btn-lg btn-block" onclick="document.getElementById('reCAPTCHA').submit();">ลงทะเบียน</button>
+                    </form>  --}}
+                    <a id="btn_next4" href="#" class="button" style="text-align: center;">ลงทะเบียน</a>
                     {{!-- <a id="btn_next4" disabled class="button" style="text-align: center;" onclick="document.getElementById('reCAPTCHA').submit();">ลงทะเบียน</a> --}}
                 </div>
             </div>
@@ -366,9 +369,8 @@
                     <h3 id="head-font">รอดำเนินการ</h3>
                     <p>บริษัทกำลังพิจารณาคุณสมบัติกรุณารอรับอีเมล</p>
                 </div>
-                
                 <div class="break"></div>
-                <div class="flex-items-sm" style="margin: 20px 10px;">
+                <div class="flex-items-sm" >
                     <a id="btn_backFinal" href="#" class="button-back" style="text-align: center;">ย้อนกลับ</a>
                 </div>
                 <div class="flex-items-sm" style="margin: 20px 10px;">

@@ -6,23 +6,27 @@ const path    = require('path');
 const app     = express();
 const cokieSession = require('cookie-session');
 const bcrypt = require('bcrypt');
+const moment = require('moment');
 
 const PORT    = process.env.PORT || 5000;
 const dbConnection = require('./db_root_connection');
+
 /* Express middleware*/
 const { body, validationResult } = require('express-validator');
-
-const moment = require('moment');
+/* Custom Middleware*/
+const logger  = require('./middleware/logger');
 /*Template engine*/
 const exphbs  = require('express-handlebars');
-/* Middleware*/
-const logger  = require('./middleware/logger');
-const users   = require('./Users');
+/*set up api */
 const res_users = require('./res_users');
 
+/* import data */
+const users   = require('./Users');
+const res_type = require('./restaurant_type');
+
+/* BodyParser */
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
-// set up BodyParser Middleware
 
 /**
  * set up environment
@@ -30,10 +34,11 @@ app.use(express.json());
 // set up public and views folder
 app.use(express.static(path.join(__dirname,'views'))); 
 app.use(express.static(path.join(__dirname,'public')));
+app.use('/auto_province', express.static(__dirname + '/public/auto_province'));
+app.use('/json', express.static(__dirname + '/public/auto_province/json'));
 
 //set up middleware
 app.use(logger);
-app.use('/api/users', require('./routes/api/users'));
 
 // set up server log
 app.listen(PORT,()=>{console.log('Server is running on port '+ PORT)});
@@ -46,14 +51,15 @@ app.engine('handlebars', exphbs({
 }));
 app.set('view engine', 'handlebars');
 
-// test express
-app.get('/test', (req, res) => {
-    res.send('test server time ' + `${req.protocol}://${req.get('host')}${req.originalUrl}: ${moment().format()}`)
+app.get('/index',(req,res)=>{
+    res.render('index',{
+        title: 'user app',
+        users
+    })
 })
 
-// test api
-// พังที่ form font-end มัน submit input ใน tag div ไม่ได้ ลองเสิจ [register form with multiple step]
 app.use('/api/res_user',require('./routes/api/res_user'));
+app.use('/api/users', require('./routes/api/users'));
 
 //Route
     // Home route
@@ -67,7 +73,9 @@ app.get('/', (req, res)=>{
 
     // Restaurant register route
 app.get('/res_register',(req,res)=>{
-    res.render('Restaurant_register')
+    res.render('Restaurant_register',{
+        res_type,
+    })
 })
 
 
@@ -81,6 +89,5 @@ app.get('/dri_login',(req,res)=>{
 })
 
 
-//use Body parse middleware เอาไว้ล่างสุดไม่งั้น express render หน้าไม่ได้
 // app.use(express.urlencoded({extended: false}));
 // app.use(express.json());

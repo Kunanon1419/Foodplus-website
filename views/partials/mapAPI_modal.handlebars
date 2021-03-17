@@ -1,11 +1,12 @@
 <style>
-    .btnOnIcon{
-        background: none;
-        border: none;
-    }
+  .btnOnIcon {
+    background: none;
+    border: none;
+  }
 </style>
-<!-- Modal -->
-<div class="modal fade bd-example-modal-lg" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<!-- Modal Bootstrap 4.6-->
+<div class="modal fade bd-example-modal-lg" id="mapModal" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -15,10 +16,13 @@
         </button>
       </div>
       <div class="modal-body">
+
         <div id="map" style="width: auto;height: 500px;margin: 10px auto;"></div>
         {{!-- Map javascript API , KEY: AIzaSyCYStQigvoniTVcOguKxKJCpSpya_CeNrA --}}
         <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCYStQigvoniTVcOguKxKJCpSpya_CeNrA&callback=initMap"type="text/javascript"></script>
+        <script async defer
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCYStQigvoniTVcOguKxKJCpSpya_CeNrA&callback=initMap"
+          type="text/javascript"></script>
       </div>
       <div class="modal-footer" style="margin: 0;">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -29,17 +33,25 @@
 </div>
 <script>
   /*init map for display*/
-   $(document).ready(function(){
-        $('#mapModal').on('shown.bs.modal',function(){
-            google.maps.event.trigger(map, "resize");
-        });
+  $(document).ready(function () {
+    $('#mapModal').on('shown.bs.modal', function () {
+      google.maps.event.trigger(map, "resize");
     });
+  });
 
-    let map;
-    function initMap() {
-        map = new google.maps.Map(document.getElementById("map"), {
-            center: { lat: -34.397, lng: 150.644 },
-            zoom: 15,
-        });
-    }
+  function initMap() {
+    // The location of Siam paragon.
+    const siam = { lat: 13.746846940933356, lng: 100.53484392605075 };
+    // The map, centered at siam
+    const map = new google.maps.Map(document.getElementById("map"), {
+      center: siam,
+      zoom: 15,
+    });
+    // The marker, positioned at Uluru
+    const marker = new google.maps.Marker({
+      position: siam,
+      map: map,
+    });
+  }
+
 </script>
