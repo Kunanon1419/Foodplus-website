@@ -3,6 +3,14 @@
     background: none;
     border: none;
   }
+
+  /* Optional: Makes the sample page fill the window. */
+  html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
 </style>
 <!-- Modal Bootstrap 4.6-->
 <div class="modal fade bd-example-modal-lg" id="mapModal" tabindex="-1" role="dialog"
@@ -16,7 +24,6 @@
         </button>
       </div>
       <div class="modal-body">
-
         <div id="map" style="width: auto;height: 500px;margin: 10px auto;"></div>
         {{!-- Map javascript API , KEY: AIzaSyCYStQigvoniTVcOguKxKJCpSpya_CeNrA --}}
         <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
@@ -43,7 +50,7 @@
     // The location of Siam paragon.
     const siam = { lat: 13.746846940933356, lng: 100.53484392605075 };
     // The map, centered at siam
-    const map = new google.maps.Map(document.getElementById("map"), {
+    const mapOptions = new google.maps.Map(document.getElementById("map"), {
       center: siam,
       zoom: 15,
     });
@@ -51,7 +58,25 @@
     const marker = new google.maps.Marker({
       position: siam,
       map: map,
+      
+    var geocoder = new google.maps.Geocoder();
+
+    document.getElementById('submit_location').addEventListener('click', function () {
+      geocodeAddress(geocoder, mapOptions);
     });
   }
-
+  function geocodeAddress(geocoder, resultsMap) {
+    var location = document.getElementById('location').value;
+    geocoder.geocode({ 'location': location }, function (results, status) {
+      if (status === 'OK') {
+        resultsMap.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+          map: resultsMap,
+          position: results[0].geometry.location
+        });
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
+    });
+  }
 </script>
