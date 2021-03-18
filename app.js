@@ -9,7 +9,7 @@ const bcrypt = require('bcrypt');
 const moment = require('moment');
 
 const PORT    = process.env.PORT || 5000;
-const dbConnection = require('./db_root_connection');
+//const dbConnection = require('./db_root_connection');
 
 /* Express middleware*/
 const { body, validationResult } = require('express-validator');
