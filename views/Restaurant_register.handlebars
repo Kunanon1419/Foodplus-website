@@ -267,8 +267,8 @@
                             aria-label="default input example" required>
                         <p></p>
                     </div>
-                    <button type="submit" class="btn btn-warning btn-lg btn-block valid_btn" onclick="">ถัดไป</button>
-                    {{!-- <a id="next" href="#" class="button" style="text-align: center;">ถัดไป</a> --}}
+                    {{!-- <button type="submit" class="btn btn-warning btn-lg btn-block valid_btn" onclick="">ถัดไป</button> --}}
+                    <a id="next" href="#" class="button" style="text-align: center;">ถัดไป</a>
                 </div>
 
                 {{!-- div 2 --}}
@@ -554,7 +554,7 @@
     $('#flexCheckDefault').prop('checked', false);
 
     // btn goto next element
-    $('.valid_btn').click(function () {
+    $('.button').click(function () {
         $(this).parent().hide().next().show();//hide parent and show next
         return false;
     });
