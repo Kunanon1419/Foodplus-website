@@ -21,7 +21,7 @@ router.post('/',(req,res)=>{
         return res.status(400).json({msg:"Please include a name and email"});
     }
     //res_users.push(newUser);
-    // res.json(newUser);
-    // res.redirect('/');
+    res.json(newUser);
+    res.redirect('/');
 })
 module.exports = router;
