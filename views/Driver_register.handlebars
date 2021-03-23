@@ -276,8 +276,10 @@
                         <input class="form-control-sm" type="text" placeholder="" aria-label="default input example">
                     </div>
                 </div>
-                <a id="btn_next1" href="#" class="button" style="text-align: center;">ต่อไป</a>
+
             </div>
+            <button type="submit" class="btn btn-warning btn-lg btn-block" onclick="next_div()">ตกลง</button>
+            {{!-- <a id="btn_next1" href="#" class="button" style="text-align: center;">ต่อไป</a> --}}
         </div>
 
         <div class="flex-container" id="div2">
@@ -381,20 +383,11 @@
     </div>
 </div>
 <script>
-    /*next div function limit 19 div*/
-    $(document).ready(function(){
-        $("a").click(function(e){
-            let btnId = e.target.id.toString();
-            let btnNum = parseInt(btnId.slice(-1));
-            let div_previous = '#div'+ btnNum
-            let div_next = '#div'+ (btnNum + 1);
-
-            if(!$(div_next).is(':visible')){
-                $(div_previous).css("display","none");
-                $(div_next).css("display","flex");
-            }
-        });
-    })
+    function next_div(e){
+        $(this).parent().hide().next().show();//hide parent and show next
+        event.preventDefault();
+        return false;
+    }
 
     /*reCAPTCHA callback*/
     function recaptchaCallback() {
