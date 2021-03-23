@@ -222,10 +222,10 @@
     #div6 {
         display: none;
     }
-    .valid_btn{
 
-    }
+    .valid_btn {}
 </style>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <div class="container" id="wrapper">
     {{> checkbox_alert}}
     {{> mapAPI_modal}}
@@ -260,6 +260,14 @@
                         <input name="tel" class="form-control" type="text" placeholder=""
                             aria-label="default input example" required>
                         <p></p>
+                        <h5>เลขประจำตัวประชาชน 13 หลัก</h5>
+                        <input name="tel" class="form-control" type="text" placeholder=""
+                            aria-label="default input example" required>
+                        <p></p>
+                        <h5>หมายเลขบัญชีธนาคารไทยพาณิชย์</h5>
+                        <input name="tel" class="form-control" type="text" placeholder=""
+                            aria-label="default input example" required>
+                        <p></p>
                         <div class="break"></div>
                         <h5>อีเมล</h5>
                         <div class="break"></div>
@@ -267,12 +275,13 @@
                             aria-label="default input example" required>
                         <p></p>
                     </div>
-                    {{!-- <button type="submit" class="btn btn-warning btn-lg btn-block valid_btn" onclick="">ถัดไป</button> --}}
+                    {{!-- <button type="submit" class="btn btn-warning btn-lg btn-block valid_btn"
+                        onclick="">ถัดไป</button> --}}
                     <a id="next" href="#" class="button" style="text-align: center;">ถัดไป</a>
                 </div>
 
                 {{!-- div 2 --}}
-                <div id="div2" class="flex-items-box">
+                {{!-- <div id="div2" class="flex-items-box">
                     <div class="flex-items">
                         <h1 style="color:#ffc000">ยืนยันอีเมล</h1>
                         <div style="font-family: 'foodplus-light'">
@@ -285,7 +294,7 @@
                         </div>
                     </div>
                     <a id="next" href="#" class="button" style="text-align: center;">ถัดไป</a>
-                </div>
+                </div> --}}
 
                 {{!-- div 3 --}}
                 <div id="div3" class="flex-items-box">
@@ -318,11 +327,11 @@
                     <h3>ที่ตั้งธุรกิจ</h3>
                     <h5 style="margin-top: 10px;">เลือกตำแหน่งร้านจากแผนที่</h5>
                     <div class="input-group">
-                        <input name="location" type="text" class="form-control"
+                        <input id="location" name="location" type="text" class="form-control"
                             placeholder="พิมพ์ชื่อร้าน หรือสถานที่ใกล้เคียงเพื่อหาร้าน"
                             aria-label="Recipient's username" aria-describedby="button-addon2" style="width: 415px;">
                         <div class="input-group-append">
-                            <button id="submit_location" class="btn btn-outline-secondary" type="button"
+                            <button id="search_location" class="btn btn-outline-secondary" type="button"
                                 data-toggle="modal" data-target="#mapModal">
                                 <i class="fa fa-search" aria-hidden="true"></i>
                             </button>
