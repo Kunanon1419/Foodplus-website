@@ -22,7 +22,7 @@ const res_users = require('./res_users');
 
 /* import data */
 const users   = require('./Users');
-const res_type = require('./restaurant_type');
+const res_type = require('./public/js/restaurant_type');
 
 /* BodyParser */
 app.use(express.urlencoded({extended: false}));
