@@ -36,7 +36,7 @@ app.use('/auto_province', express.static(__dirname + '/public/auto_province'));
 app.use('/json', express.static(__dirname + '/public/auto_province/json'));
 /* import data */
 const users   = require('./Users');
-const res_type = require('./public/js/restaurant_type');
+const res_type = require('/js/restaurant_type');
 
 //set up middleware
 app.use(logger);
