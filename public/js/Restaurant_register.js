@@ -36,9 +36,12 @@ $("#show_hide_Confirm_password").on('click', function (event) {
         $('#show_hide_Confirm_password i').addClass("fa-eye");
     }
 });
-
+// reset checkbox value and form 
+$(document).ready(function(){
+    $('#flexCheckDefault').prop('checked', false);
+    $('form').each(function() { this.reset() });
+})
 // set default checkbox to uncheck
-$('#flexCheckDefault').prop('checked', false);
 $('#flexCheckDefault').change(function () {
     let isChecked = $('#flexCheckDefault').is(':checked');
     if (isChecked) {
@@ -50,10 +53,11 @@ $('#flexCheckDefault').change(function () {
 });
 
 // btn goto next element
-$('.btn').not('[id^="upload-"]').click(function () {
+$('.btn:not(#search_location,#show_hide_password,#show_hide_Confirm_password,#submitForm)').not('[id^="upload-"]')
+.click(function () {
     $(this).parent().hide().next().show(); //hide parent and show next
-    e.preventDefault();
-    return false;
+    //e.preventDefault();
+    //return false;
 });
 
 /*reCAPTCHA callback*/
