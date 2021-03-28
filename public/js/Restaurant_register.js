@@ -52,7 +52,7 @@ $('#flexCheckDefault').change(function () {
 // btn goto next element
 $('.btn').not('[id^="upload-"]').click(function () {
     $(this).parent().hide().next().show(); //hide parent and show next
-    e.preventDefault();
+    //e.preventDefault();
     return false;
 });
 
