@@ -20,9 +20,7 @@ const exphbs  = require('express-handlebars');
 /*set up api */
 const res_users = require('./res_users');
 
-/* import data */
-const users   = require('./Users');
-const res_type = require('./public/js/restaurant_type');
+
 
 /* BodyParser */
 app.use(express.urlencoded({extended: false}));
@@ -36,6 +34,9 @@ app.use(express.static(path.join(__dirname,'views')));
 app.use(express.static(path.join(__dirname,'public')));
 app.use('/auto_province', express.static(__dirname + '/public/auto_province'));
 app.use('/json', express.static(__dirname + '/public/auto_province/json'));
+/* import data */
+const users   = require('./Users');
+const res_type = require('./public/js/restaurant_type');
 
 //set up middleware
 app.use(logger);
