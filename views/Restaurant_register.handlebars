@@ -369,18 +369,21 @@
                                 </span>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <button class="btn btn-warning" type="button" id="upload-Copy_Id_card_number">
+                                        <button class="btn btn-warning" type="submit" id="upload-Copy_Id_card_number">
                                             <i class="fa fa-upload"></i> แนบไฟล์
                                         </button>
                                     </div>
                                     <div class="custom-file">
+                                        <input type="hidden" id="avatar-url" name="avatar-url" value="">
                                         <input type="file" class="custom-file-input" id="Copy_Id_card_number">
-                                        <label class="custom-file-label" for="Copy_Id_card_number">Choose file</label>
+                                        <label class="custom-file-label" for="Copy_Id_card_number">Choose
+                                            file</label>
                                     </div>
                                 </div>
                                 <input id="Id_exp_datepicker" onkeydown="return false" placeholder="วันหมดอายุเอกสาร"
                                     style="width: 300px;">
                                 <p></p>
+
 
                                 <span>2.ใบประกอบการร้านค้า</span>
                                 <div class="input-group mb-3">
@@ -468,7 +471,7 @@
         xhr.onreadystatechange = () => {
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
-                    document.getElementById('preview').src = url;
+                    //document.getElementById('preview').src = url;
                     document.getElementById('avatar-url').value = url;
                 }
                 else {
