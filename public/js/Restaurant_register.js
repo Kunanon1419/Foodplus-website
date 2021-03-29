@@ -57,7 +57,7 @@ $('.btn:not(#search_location,#show_hide_password,#show_hide_Confirm_password,#su
 .click(function () {
     $(this).parent().hide().next().show(); //hide parent and show next
     //e.preventDefault();
-    //return false;
+    return false;
 });
 
 /*reCAPTCHA callback*/
