@@ -44,7 +44,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/auto_province', express.static(__dirname + '/public/auto_province'));
 app.use('/json', express.static(__dirname + '/public/auto_province/json'));
 /* import data */
-const users = require('./Users');
 const res_type = require('./public/js/Restaurant_type');
 
 //set up middleware
