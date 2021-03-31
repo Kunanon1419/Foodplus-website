@@ -3,21 +3,25 @@
         font-family: foodplus-light;
         src: url('/font/rsufont/RSU_light.ttf')
     }
+
     * {
         box-sizing: border-box;
         padding: 0;
         margin: 0;
         font-family: 'foodplus-light';
     }
+
     #f_shadow {
         text-shadow: 2px 2px 11px rgba(0, 0, 0, 0.8);
         margin: 0;
     }
+
     html,
     body {
         height: 100%;
         width: 100%;
     }
+
     /* set fullscreen */
     html,
     body {
@@ -26,19 +30,23 @@
         margin: 0;
         padding: 0;
     }
+
     #wrapper {
         min-height: 100vh;
         min-width: 100%;
     }
+
     /* font_style */
     #head-font {
         color: #ffc000;
         font-weight: bold;
     }
+
     #upload-style {
         color: #fff;
         text-shadow: 2px 2px 11px rgba(0, 0, 0, 0.3);
     }
+
     /*Grid layout*/
     .container {
         display: grid;
@@ -46,32 +54,39 @@
             'header header'1fr 'main main'9fr /1fr;
         padding: 0;
     }
+
     header {
         grid-area: header;
     }
+
     .main {
         grid-area: main;
         background-image: url(/images/Restaurant/food-compress.jpg);
         background-size: cover;
         background-repeat: no-repeat;
     }
+
     /*flex parent*/
     .flex-container {
         display: flex;
         align-items: center;
         flex-wrap: wrap;
     }
+
     .flex-container>.flex-items {
         color: grey;
     }
+
     .flex-container>* {
         text-shadow: 2px 2px 11px rgba(0, 0, 0, 0.1);
     }
+
     .flex-img-item {
         max-width: 100vh;
         max-height: 100vh;
         ;
     }
+
     .flex-items-box {
         min-width: 500px;
         width: auto;
@@ -82,22 +97,26 @@
         /*shadow box*/
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     }
+
     .flex-item {
         align-items: flex-start;
         flex-wrap: wrap;
         flex-direction: column;
     }
+
     /*wrapper*/
     .break {
         flex-basis: 100%;
         height: 0;
     }
+
     /*input */
     .form-control {
         border: 2px solid grey;
         width: 480px;
         border-radius: 10px;
     }
+
     .form-control-sm {
         flex-direction: row;
         margin: 5px 0px;
@@ -107,27 +126,35 @@
         border-radius: 25px;
         height: 39.2px;
     }
+
     .input-group-addon {
         border-radius: 10px;
     }
+
     .btnOnIcon {
         background: none;
         border: none;
     }
+
     /*Display*/
     #div1 {}
+
     #div2 {
         display: none;
     }
+
     #div3 {
         display: none;
     }
+
     #div4 {
         display: none;
     }
+
     #div5 {
         display: none;
     }
+
     #div6 {
         display: none;
     }
@@ -338,65 +365,77 @@
                                 <span>กรุณาแนบเอกสารที่ใช้ในการสมัครดังนี้ <br>
                                     1.สำเนาบัตรประชาชน
                                 </span>
-                                {{!-- <input type="file" id="file-input"> --}}
                                 <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <button class="btn btn-warning" type="submit" id="upload-Copy_Id_card_number">
+                                    {{!-- <div class="input-group-prepend">
+                                        <button class="btn btn-warning" type="submit"
+                                            id="upload-Copy_Res_Id_card_number">
                                             <i class="fa fa-upload"></i> แนบไฟล์
                                         </button>
-                                    </div>
+                                    </div> --}}
                                     <div class="custom-file">
-                                        <input type="hidden" id="url_Copy_Id_card_number" name="url_Copy_Id_card_number" value="">
-                                        <input type="file" class="custom-file-input" id="Copy_Id_card_number" name="Copy_Id_card_number">
-                                        <label class="custom-file-label" for="Copy_Id_card_number">Choose
+                                        <input type="hidden" id="url_Copy_Res_Id_card_number"
+                                            name="url_Copy_Res_Id_card_number" value="">
+                                        <input type="file" class="custom-file-input" id="Copy_Res_Id_card_number"
+                                            name="Copy_Res_Id_card_number">
+                                        <label class="custom-file-label" for="Copy_Res_Id_card_number">Choose
                                             file</label>
                                     </div>
                                 </div>
-                                <input id="Id_exp_datepicker" onkeydown="return false" placeholder="วันหมดอายุเอกสาร"
-                                    style="width: 300px;">
-                                <p></p>
+                                <input id="Id_exp_datepicker" onkeydown="return false"
+                                    placeholder="วันหมดอายุบัตรประชาชน" style="width: 300px;border: 1px solid gray;">
+                                <script>
+                                    $('#Id_exp_datepicker').datepicker({
+                                        uiLibrary: 'bootstrap4',
+                                        format: 'mm/dd/yyyy'
+                                    });
+                                </script>
 
 
                                 <span>2.ใบประกอบการร้านค้า</span>
                                 <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
+                                    {{!-- <div class="input-group-prepend">
                                         <button class="btn btn-warning" type="button"
                                             id="upload-Restaurant_business_license">
                                             <i class="fa fa-upload"></i> แนบไฟล์
                                         </button>
-                                    </div>
+                                    </div> --}}
                                     <div class="custom-file">
-                                        <input type="hidden" id="url_Restaurant_business_license" name="url_Restaurant_business_license" value="">
+                                        <input type="hidden" id="url_Restaurant_business_license"
+                                            name="url_Restaurant_business_license" value="">
                                         <input type="file" class="custom-file-input" id="Restaurant_business_license">
-                                        <label class="custom-file-label" for="Restaurant_business_license">Choose file</label>
+                                        <label class="custom-file-label" for="Restaurant_business_license">Choose
+                                            file</label>
                                     </div>
                                 </div>
 
                                 <span>3.สำเนาทะเบียนบ้านของร้าน</span>
                                 <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
+                                    {{!-- <div class="input-group-prepend">
                                         <button class="btn btn-warning" type="button"
                                             id="upload-Copy_res_house_registratione">
                                             <i class="fa fa-upload"></i> แนบไฟล์
                                         </button>
-                                    </div>
+                                    </div> --}}
                                     <div class="custom-file">
-                                        <input type="hidden" id="url_Copy_res_house_registration" name="url_Copy_res_house_registration" value="">
+                                        <input type="hidden" id="url_Copy_res_house_registration"
+                                            name="url_Copy_res_house_registration" value="">
                                         <input type="file" class="custom-file-input" id="Copy_res_house_registration">
-                                        <label class="custom-file-label" for="Copy_res_house_registration">Choose file</label>
+                                        <label class="custom-file-label" for="Copy_res_house_registration">Choose
+                                            file</label>
                                     </div>
                                 </div>
 
 
                                 <span>4.รูปถ่ายร้านค้า</span>
                                 <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
+                                    {{!-- <div class="input-group-prepend">
                                         <button class="btn btn-warning" type="button" id="upload-Restaurant_Photo">
                                             <i class="fa fa-upload"></i> แนบไฟล์
                                         </button>
-                                    </div>
+                                    </div> --}}
                                     <div class="custom-file">
-                                        <input type="hidden" id="url_Restaurant_Photo" name="url_Restaurant_Photo" value="">
+                                        <input type="hidden" id="url_Restaurant_Photo" name="url_Restaurant_Photo"
+                                            value="">
                                         <input type="file" class="custom-file-input" id="Restaurant_Photo">
                                         <label class="custom-file-label" for="Restaurant_Photo">Choose file</label>
                                     </div>
@@ -404,11 +443,11 @@
 
                                 <span>5.สำเนาหน้าสมุดธนาคาร</span>
                                 <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
+                                    {{!-- <div class="input-group-prepend">
                                         <button class="btn btn-warning" type="button" id="upload-Copy_bank_book">
                                             <i class="fa fa-upload"></i> แนบไฟล์
                                         </button>
-                                    </div>
+                                    </div> --}}
                                     <div class="custom-file">
                                         <input type="hidden" id="url_Copy_bank_book" name="url_Copy_bank_book" value="">
                                         <input type="file" class="custom-file-input" id="Copy_bank_book">
@@ -438,7 +477,7 @@
     /*
       Function to carry out the actual PUT request to S3 using the signed request from the app.
     */
-    function uploadFile(file, signedRequest, url,input_url) {
+    function uploadFile(file, signedRequest, url, input_url) {
         const xhr = new XMLHttpRequest();
         xhr.open('PUT', signedRequest);
         xhr.onreadystatechange = () => {
@@ -460,7 +499,7 @@
       If request successful, continue to upload the file using this signed
       request.
     */
-    function getSignedRequest(file,input_name,tel) {
+    function getSignedRequest(file, input_name, tel) {
         const xhr = new XMLHttpRequest();
         xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}&input-name=${input_name}&tel=${tel}`);
         xhr.onreadystatechange = () => {
@@ -490,13 +529,13 @@
         if (file == null) {
             return alert('No file selected.');
         }
-        getSignedRequest(file,input_name,tel);
+        getSignedRequest(file, input_name, tel);
     }
     /*
      Bind listeners when the page loads.
     */
     (() => {
-        $('.custom-file-input').change(function(e){
+        $('.custom-file-input').change(function (e) {
             initUpload(e.target.id);
         });
         //document.getElementById('file-input').onchange = initUpload;
