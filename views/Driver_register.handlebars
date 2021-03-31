@@ -1,254 +1,184 @@
 <style>
-    @font-face{
-        font-family:foodplus;
-        src:url('/font/rsufont/RSU_Regular.ttf')
+    @font-face {
+        font-family: foodplus;
+        src: url('/font/rsufont/RSU_Regular.ttf')
     }
-    *{
+
+    * {
         box-sizing: border-box;
         padding: 0;
         margin: 0;
         font-family: 'foodplus';
     }
-    {{!-- set fullscreen --}}
-    html, body {
+
+    /* set fullscreen */
+    html,
+    body {
         height: 100%;
         width: 100%;
         margin: 0;
         padding: 0;
-        background-color: #000;
+        background-color: #fff;
     }
+
     #wrapper {
-        min-height: 100vh; 
+        min-height: 100vh;
         min-width: 100%;
     }
-    {{!-- head-font --}}
-    #head-font{
-        color: #ffc000;
+
+    /* head-font */
+    #head-font {
+        color: #;
         font-weight: bold;
     }
-    {{!-- Grid layout --}}
-    .container{
+
+    /* Grid layout */
+    .container {
         display: grid;
-        grid-template: 
-            'header header' 0.2fr 
-            'main main'  4.8fr
-            /1fr;
+        grid-template:
+            'header header'0.2fr 'main main'4.8fr /1fr;
         padding: 0;
     }
-    header{
+
+    header {
         grid-area: header;
     }
-    .main{
+
+    .main {
         grid-area: main;
     }
-    {{!-- flex parent --}}
-    .flex-container{
+
+    /* flex parent */
+    .flex-container {
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
     }
-    .flex-container > .flex-items{
-        color: #fff;
-    }
-    .flex-container > .flex-items2{
-        color: #fff;
-    }
     
-    {{!-- flex child --}}
-    .flex-img-item{
+    
+    .flex-container>.flex-items {
+        color: rgb(100, 94, 94);
+    }
+
+    .flex-container>.flex-items2 {
+        color: rgb(100, 94, 94);
+    }
+
+    /* flex child */
+    .flex-img-item {
         min-width: 100vh;
         width: 100%;
-        background-color: #000;
+        background-color: #fff;
         margin-bottom: 20px;
-    }  
-    .flex-items{
+    }
+
+    .flex-items {
         width: 500px;
-        height: 100%;
+        height: auto;
         margin: 0 40px;
     }
-    .flex-items2{
+
+    .flex-items2 {
         padding: 10px auto;
         width: 300px;
         height: 100%;
         margin: 0 20px;
     }
-    .flex-items-sm{
+
+    .flex-items-sm {
         width: 220px;
         height: 100%;
-        
+
     }
-    {{!-- wrapper --}}
+
+    /* wrapper */
     .break {
         flex-basis: 100%;
         height: 0;
     }
-    {{!-- input --}}
-    .form-control{
+
+    /* input */
+    .form-control {
         margin: 0px auto;
-        border: 2px solid #ffc000;
-        background-color: #000;
+        border: 2px solid #000;
+        background-color: #fff;
         width: 500px;
         border-radius: 25px;
     }
-    .form-control-sm{
+    #sm{
+        width:220px;
+
+    }
+    /*.form-control-sm {
         flex-direction: row;
         margin: 5px 0px;
         border: 2px solid #ffc000;
-        background-color: #000;
+        background-color: #fff;
         width: 220px;
         border-radius: 25px;
         height: 39.2px;
-    }
-    .input-group-addon{
+    }*/
+
+    .input-group-addon {
         border-radius: 10px;
     }
-    {{!-- button bootstrap class --}}
-    .btn-warning{
-        margin: 5px 5px;
-        border-radius: 25px;
-    }
-    {{!-- button Accept,Upload,Next--}}
-    .button {
-        display: inline-block;
-        padding: 0.75rem 1.25rem;
-        border-radius: 10rem;
-        color: #000;
-        text-transform: uppercase;
-        font-size: 1rem;
-        letter-spacing: 0.15rem;
-        transition: all 0.3s;
-        position: relative;
-        overflow: hidden;
-        z-index: 1;
-        width: 100%;
-        height: 40;
-        text-decoration: none;
-        margin-top: 10px;
-        margin-bottom: 5px;
-    }
-    .button:after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: #ffc000;
-        border-radius: 10rem;
-        z-index: -2;
-    }
-    .button:before {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 0%;
-        height: 100%;
-        background-color: #ff7700;
-        transition: all 0.3s;
-        border-radius: 10rem;
-        z-index: -1;
-    }
-    .button:hover {
-        color: #fff;
-    }
-    .button:hover:before {
-        width: 100%;
-    }
-    {{!-- button Back--}}
-    .button-back {
-        display: inline-block;
-        padding: 0.75rem 1.25rem;
-        border-radius: 10rem;
-        color: #000;
-        text-transform: uppercase;
-        font-size: 1rem;
-        letter-spacing: 0.15rem;
-        transition: all 0.3s;
-        position: relative;
-        overflow: hidden;
-        z-index: 1;
-        width: 100%;
-        height: 40;
-        text-decoration: none;
-        margin-top: 10px;
-        margin-bottom: 5px;
-    }
-    .button-back:after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: #dddddd;
-        border-radius: 10rem;
-        z-index: -2;
-    }
-    .button-back:before {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 0%;
-        height: 100%;
-        background-color: red;
-        transition: all 0.3s;
-        border-radius: 10rem;
-        z-index: -1;
-    }
-    .button-back:hover {
-        color: #fff;
-    }
-    .button-back:hover:before {
-        width: 100%;
-    }
-    #div1{
-        
-    }
-    #div2{
+
+    #div1 {}
+
+    #div2 {
         display: none;
     }
-    #div3{
+
+    #div3 {
         display: none;
     }
-    #div4{
+
+    #div4 {
         display: none;
     }
-    #div5{
+
+    #div5 {
         display: none;
+    }
+
+    .btn {
+        margin: 15px;
+        width: 500px;
     }
 </style>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <div class="container" id="wrapper">
+    {{> checkbox_alert}}
+    {{> mapAPI_modal}}
     <header>
         {{> driver_header}}
     </header>
     <div class="main">
         <div class="flex-container">
-            <img src="/images/Driver/driver_main_edit.png" 
-            style="box-shadow: 0 2px 4px 0 #ffc000;" alt="" class="flex-img-item">
+            <img src="/images/Driver/driver_main_edit.png" style="box-shadow: 0 2px 4px 0 #ffc000;" alt=""
+                class="flex-img-item">
         </div>
         {{!-- <div class="flex-container">
             เอาทั้งหมดมาคลุมในนี้
         </div> --}}
-        <div class="flex-container" id="div1">
+        <div class="flex-container" style="justify-content: center;" id="div1" >
             <h2 style="color: #ffc000;">ลงทะเบียนผู้ขับ</h2>
             <div class="break"></div>
-            <h4 style="color: #fff;">กรุณากรอกรายละเอียดผู้สมัครขับ</h4>
+            <h4 style="color: rgb(100, 94, 94);">กรุณากรอกรายละเอียดผู้สมัครขับ</h4>
             <div class="break"></div>
             <div class="flex-items">
                 <div class="flex-container" style="justify-content: space-between;">
                     <div class="flex-items-sm">
                         <label for="">ชื่อ</label>
                         <div class="break"></div>
-                        <input class="form-control-sm" type="text" placeholder="" aria-label="default input example">
+                        <input class="form-control" id="sm" type="text" placeholder="" aria-label="default input example">
                     </div>
                     <div class="flex-items-sm">
                         <label for="">นามสกุล</label>
                         <div class="break"></div>
-                        <input class="form-control-sm" type="text" placeholder="" aria-label="default input example">
+                        <input class="form-control" id="sm" type="text" placeholder="" aria-label="default input example">
                     </div>
-                </div>          
+                </div>
                 <label for="">หมายเลขบัตรประชาชน</label>
                 <input class="form-control" type="text" placeholder="" aria-label="default input example">
                 <label for="">เบอร์โทรศัพท์</label>
@@ -262,60 +192,80 @@
                 <label for="">ที่อยู่ตามทะเบียนบ้าน</label>
                 <div class="break"></div>
                 <label for="">จังหวัด</label>
-                <input class="form-control" type="text" placeholder="" aria-label="default input example">
+               <!-- <input class="form-control" type="text" placeholder="" aria-label="default input example">-->
+                 <select id="province" name="province" class="custom-select" style="border: 2px solid #000;background-color: #fff;">
+                        <option selected>กรุณาเลือกจังหวัด</option>
+                    </select>
 
-                <div class="flex-container" style="justify-content: space-between;">
-                    <div class="flex-items-sm">
+                <div style="display: flex; justify-content: space-between;">
+                    <div style="width: auto;">
                         <label for="">เขต/อำเภอ</label>
                         <div class="break"></div>
-                        <input class="form-control-sm" type="text" placeholder="" aria-label="default input example">
+                        <!--<input class="form-control" id="sm" type="text" placeholder="" aria-label="default input example">-->
+                        <select id="amphur" name="amphur" class="custom-select" style="width:220px;border: 2px solid #000;background-color: #fff;">
+                                <option></option>
+                        </select>
                     </div>
-                    <div class="flex-items-sm">
+                    <div  style="width: auto;">
                         <label for="">แขวง/ตำบล</label>
                         <div class="break"></div>
-                        <input class="form-control-sm" type="text" placeholder="" aria-label="default input example">
+                        <!--<input class="form-control" id="sm" type="text" placeholder="" aria-label="default input example">-->
+                        <select id="district" name="district" class="custom-select" style="width:220px;border: 2px solid #000;background-color: #fff;">
+                                <option></option>
+                        </select>
                     </div>
                 </div>
-                <a id="btn_next1" href="#" class="button" style="text-align: center;">ต่อไป</a>
             </div>
+            <button type="submit" class="btn btn-warning btn-lg btn-block">ถัดไป</button>
         </div>
 
-        <div class="flex-container" id="div2">
+        {{!-- <div class="flex-container" id="div2">
             <div class="flex-items">
                 <h2 style="color: #ffc000;">ยืนยันอีเมล</h2>
                 <h4 style="color: #fff;">กรอกรหัส OTP ส่งไปที่ example@mail.com (ref:xxx) เพื่อทำรายการต่อไป</h4>
                 <div class="flex-container" style="justify-content: space-evenly">
                     <h2 style="color: #ffc000;">OTP</h2>
-                    <input class="form-control-sm" style="width: fit-content;" type="text" placeholder="" aria-label="default input example">
+                    <input class="form-control-sm" style="width: fit-content;" type="text" placeholder=""
+                        aria-label="default input example">
                 </div>
                 <a id="btn_next2" href="#" class="button" style="text-align: center;">ต่อไป</a>
-            </div>    
-        </div>
+            </div>
+        </div> --}}
 
         <div class="flex-container" id="div3">
             <div style="text-align: center;">
                 <h2 style="color: #ffc000;">ลงทะเบียนผู้ขับ</h2>
                 <div class="break"></div>
-                <h4 style="color: #fff;">กรุณาระบุพื้นที่ที่ต้องการสมัครขับ</h4>
+                <h4 style="color: rgb(100, 94, 94);">กรุณาระบุพื้นที่ที่ต้องการสมัครขับ</h4>
             </div>
             <div class="break"></div>
             <div class="flex-items">
                 <label for="">จังหวัด</label>
-                <input class="form-control" type="text" placeholder="" aria-label="default input example">
+                <select id="province_working" name="province" class="custom-select" style="border: 2px solid #000;background-color: #fff;">
+                        <option selected>กรุณาเลือกจังหวัด</option>
+                </select>
                 <label for="">แขวง/อำเภอ</label>
-                <input class="form-control" type="text" placeholder="" aria-label="default input example">
-                <div class="flex-container">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                            ข้าพเจ้ายอมรับ
-                            <a href="#" style="color: #ffc000;">เงื่อนไขและข้อตกลง</a>
-                            ในการใช้บริการ Food Rider
-                        </label>
+                <select id="amphur_working" name="amphur" class="custom-select" style="border: 2px solid #000;background-color: #fff;">
+                                <option></option>
+                </select>
+                 <div class="flex-container">
+                    <div class="flex-container" style="justify-content: center;">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                ข้าพเจ้ายอมรับ <a href="#" style="color: #ffc000;">เงื่อนไขและข้อตกลง</a> ในการใช้บริการ
+                                <br>
+                                Food Driver
+                            </label>
+                        </div>
+                        <p></p>
+                        {{!-- <button id="submitBtn" type="submit" disabled class="btn btn-warning btn-lg btn-block"
+                            onclick="document.getElementById('reCAPTCHA').submit();">ลงทะเบียน</button> --}}
                     </div>
-                    <a id="btn_next3" href="#" class="button" style="text-align: center;">ลงทะเบียน</a>
                 </div>
             </div>
+            <div class="break"></div>
+            <button type="submit" id="submitBtn" class="btn btn-warning btn-lg btn-block">ลงทะเบียน</button>
         </div>
         <div class="flex-container" id="div4">
             <div style="text-align: center;">
@@ -324,80 +274,150 @@
             <div class="break"></div>
             <div class="flex-items">
                 <label for="">รหัสผ่าน</label>
-                <input class="form-control" type="text" placeholder="" aria-label="default input example">
-                <label for="">ยืนยันรหัสผ่าน</label>
-                <input class="form-control" type="text" placeholder="" aria-label="default input example">
-                {{!-- <form action="?" method="POST" id="reCAPTCHA"></form> --}}
-                <div class="flex-container" style="justify-content: center;">
-                    {{!-- <form action="?" id="reCAPTCHA" style="margin-top: 5px;">
-                        <div class="g-recaptcha" data-callback="recaptchaCallback" data-sitekey="6Le9o0MaAAAAAGPyhr4ffu9oMT2A2OtRC86B0a1v"></div>
-                    </form>  --}}
-                    <a id="btn_next4" href="#" class="button" style="text-align: center;">ลงทะเบียน</a>
-                    {{!-- <a id="btn_next4" disabled class="button" style="text-align: center;" onclick="document.getElementById('reCAPTCHA').submit();">ลงทะเบียน</a> --}}
-                </div>
+                        <div class="input-group">
+                            <input name="password" id="password" class="form-control" type="password"
+                                placeholder="กรุณาระบุรหัสผ่านขั้นต่ำ 8-16 ตัวอักษรหรือตัวเลข" style="width: 415px;">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button" id="show_hide_password">
+                                    <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <p></p>
+                        <label for="">ยืนยันรหัสผ่าน</label>
+                        <div class="input-group">
+                            <input name="confirm_password" id="confirm_password" type="password" class="form-control"
+                                placeholder="กรุณาระบุรหัสผ่านอีกครั้ง" aria-label="Recipient's username"
+                                aria-describedby="button-addon2" style="width: 415px;">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button" id="show_hide_Confirm_password">
+                                    <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
             </div>
+            <div class="break"></div>
+            <button type="submit" class="btn btn-warning btn-lg btn-block">ลงทะเบียน</button>
         </div>
-        <div id="div5">
-            <div class="flex-container">
-                <div class="flex-items2" >
-                    <div style="border: 2px solid #ffc000;border-radius: 3px;margin-bottom: 10px;"></div>
-                    <h3 id="head-font">ชำระค่าสมัคร</h3>
-                    <p>400 บาทเลขที่บัญชี<br>
-                        bank_id  bank_name<br>
-                        ชื่อบัญชี: bank_acc_name
-                    </p>
-                    <a href="#" class="button" style="text-align: center;">แนบไฟล์</a>
-                </div>
-                <div class="flex-items2" >
-                    <div style="border: 2px solid #ffc000;border-radius: 3px;margin-bottom: 10px"></div>
-                    <h3 id="head-font">ส่งเอกสาร</h3>
-                    <span>กรุณาแนบเอกสารที่ใช้ในการสมัครดังนี้ <br>
+
+        <div class="flex-container" id="div5">
+            <div class="flex-items2">
+                <div style="border: 2px solid #ffc000;border-radius: 3px;margin-bottom: 10px;"></div>
+                <h3 id="head-font">ชำระค่าสมัคร</h3>
+                <p>400 บาทเลขที่บัญชี<br>
+                    bank_id bank_name<br>
+                    ชื่อบัญชี: bank_acc_name
+                </p>
+                <!--<a href="#" class="button" style="text-align: center;">แนบไฟล์</a>-->
+                <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="Restaurant_business_ license">
+                        <label class="custom-file-label" for="Restaurant_business_ license">Choose file</label>
+                    </div>
+
+            </div>
+            <div class="flex-items2">
+                <div style="border: 2px solid #ffc000;border-radius: 3px;margin-bottom: 10px"></div>
+                <h3 id="head-font">ส่งเอกสาร</h3>
+                <span>กรุณาแนบเอกสารที่ใช้ในการสมัครดังนี้ <br>
                     1.สำเนาบัตรประชาชน
-                    </span>
-                    <a href="#" class="button" style="text-align: center;">แนบไฟล์</a>
-                    <input id="Id_exp_datepicker">
-                    <br>
-                    <span>2.สำเนาใบขับขี่</span>
-                    <a href="#" class="button" style="text-align: center;">แนบไฟล์</a>
-                    <input id="Driver_exp_datepicker">
-                    <br>
-                    <span>3.สำเนาหน้าสมุดธนาคาร</span>
-                    <a href="#" class="button" style="text-align: center;">แนบไฟล์</a>
-                </div>
-                <div class="flex-items2" >
-                    <div style="border: 2px solid #ffc000;border-radius: 3px;margin-bottom: 10px"></div>
-                    <h3 id="head-font">รอดำเนินการ</h3>
-                    <p>บริษัทกำลังพิจารณาคุณสมบัติกรุณารอรับอีเมล</p>
-                </div>
-                <div class="break"></div>
-                <div class="flex-items-sm" >
-                    <a id="btn_backFinal" href="#" class="button-back" style="text-align: center;">ย้อนกลับ</a>
-                </div>
-                <div class="flex-items-sm" style="margin: 20px 10px;">
-                    <a id="btn_nextFinal" href="#" class="button" style="text-align: center;">ถัดไป</a>
-                </div>
+                </span>
+                <!--<a href="#" class="button" style="text-align: center;">แนบไฟล์</a>-->
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="Restaurant_business_ license">
+                        <label class="custom-file-label" for="Restaurant_business_ license">Choose file</label>
+                    </div>
+
+                <input id="Id_exp_datepicker">
+                <br>
+                <span>2.สำเนาใบขับขี่</span>
+                <!--<a href="#" class="button" style="text-align: center;">แนบไฟล์</a>-->
+                <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="Restaurant_business_ license">
+                        <label class="custom-file-label" for="Restaurant_business_ license">Choose file</label>
+                    </div>
+
+                <input id="Driver_exp_datepicker">
+                <br>
+                <span>3.สำเนาหน้าสมุดธนาคาร</span>
+                <!--<a href="#" class="button" style="text-align: center;">แนบไฟล์</a>-->
+                <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="Restaurant_business_ license">
+                        <label class="custom-file-label" for="Restaurant_business_ license">Choose file</label>
+                    </div>
             </div>
-        </div>
+            <div class="flex-items2">
+                <div style="border: 2px solid #ffc000;border-radius: 3px;margin-bottom: 10px"></div>
+                <h3 id="head-font">รอดำเนินการ</h3>
+                <p>บริษัทกำลังพิจารณาคุณสมบัติกรุณารอรับอีเมล</p>
+            </div>
+            <button style="border-radius: 20px;padding: 6px; widht:220px;" type="submit" class="btn btn-warning btn-lg btn-block">ลงทะเบียน</button>
+        </div.>
     </div>
 </div>
+</div>
+<script type="text/javascript" src="/auto_province/AutoProvince.min.js"></script>
 <script>
-    /*next div function limit 19 div*/
-    $(document).ready(function(){
-        $("a").click(function(e){
-            let btnId = e.target.id.toString();
-            let btnNum = parseInt(btnId.slice(-1));
-            let div_previous = '#div'+ btnNum
-            let div_next = '#div'+ (btnNum + 1);
+    $('body').AutoProvince({
+    PROVINCE: '#province,#province_working', // select div สำหรับรายชื่อจังหวัด
+    AMPHUR: '#amphur,#amphur_working', // select div สำหรับรายชื่ออำเภอ
+    DISTRICT: '#district', // select div สำหรับรายชื่อตำบล
+    POSTCODE: '#postcode', // input field สำหรับรายชื่อรหัสไปรษณีย์
+    GEOGRAPHY: '#geography', // input field แสดงภาค
+    CURRENT_PROVINCE: 4, //  แสดงค่าเริ่มต้น ใส่ไอดีจังหวัดที่เคยเลือกไว้
+    CURRENT_AMPHUR: 4, // แสดงค่าเริ่มต้น  ใส่ไอดีอำเภอที่เคยเลือกไว้
+    CURRENT_DISTRICT: 1, // แสดงค่าเริ่มต้น  ใส่ไอดีตำบลที่เคยเลือกไว้
+    arrangeByName: true // กำหนดให้เรียงตามตัวอักษร
+    });
 
-            if(!$(div_next).is(':visible')){
-                $(div_previous).css("display","none");
-                $(div_next).css("display","flex");
-            }
-        });
-    })
+    // btn goto next element
+    /*$('.btn').not('[id^="upload-"]').click(function () {
+        $(this).parent().hide().next().show(); //hide parent and show next
+        e.preventDefault();
+        return false;
+    });*/
 
+    $('.btn').click(function () {
+        $(this).parent().hide().next().css('display', 'flex')//hide parent and show next
+        return false;
+    });
     /*reCAPTCHA callback*/
-    function recaptchaCallback() {
-        $('#submitBtn').removeAttr('disabled');
-    };
+    // set default checkbox to uncheck
+    $('#flexCheckDefault').prop('checked', false);
+    $('#flexCheckDefault').change(function () {
+        let isChecked = $('#flexCheckDefault').is(':checked');
+        if (isChecked) {
+            $('#submitBtn').removeAttr('disabled');
+        } else {
+            $('#submitBtn').attr('disabled');
+        }
+        return false;
+    });
+
+    // hide or show password function
+    $("#show_hide_password").on('click', function (event) {
+        event.preventDefault();
+        if ($('#password').attr("type") == "text") {
+            $('#password').attr('type', 'password');
+            $('#show_hide_password i').addClass("fa-eye-slash");
+            $('#show_hide_password i').removeClass("fa-eye");
+        } else if ($('#password').attr("type") == "password") {
+            $('#password').attr('type', 'text');
+            $('#show_hide_password i').removeClass("fa-eye-slash");
+            $('#show_hide_password i').addClass("fa-eye");
+        }
+    });
+
+    $("#show_hide_Confirm_password").on('click', function (event) {
+        event.preventDefault();
+        if ($('#confirm_password').attr("type") == "text") {
+            $('#confirm_password').attr('type', 'password');
+            $('#show_hide_Confirm_password i').addClass("fa-eye-slash");
+            $('#show_hide_Confirm_password i').removeClass("fa-eye");
+        } else if ($('#confirm_password').attr("type") == "password") {
+            $('#confirm_password').attr('type', 'text');
+            $('#show_hide_Confirm_password i').removeClass("fa-eye-slash");
+            $('#show_hide_Confirm_password i').addClass("fa-eye");
+        }
+    });
+
 </script>
