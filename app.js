@@ -73,6 +73,7 @@ app.get('/index', (req, res) => {
 })
 
 app.use('/api/res_user', require('./routes/api/res_user'));
+app.use('/api/dri_user', require('./routes/api/dri_user'));
 app.use('/api/users', require('./routes/api/users'));
 
 //Route
@@ -91,6 +92,10 @@ app.get('/res_register', (req, res) => {
         res_type,
     })
 })
+// Driver register route
+app.get('/dri_register', (req, res) => {
+    res.render('Driver_register')
+})
 /*
  * Respond to GET requests to /sign-s3.
  * Upon request, return JSON containing the temporarily-signed S3 request and
@@ -98,44 +103,34 @@ app.get('/res_register', (req, res) => {
  */
 app.get('/sign-s3', (req, res) => {
     const s3 = new aws.S3({
-        accessKeyId:'AKIAYNSZO2JYHIT24K4J',
-        secretAccessKey:'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',
-        Bucket:'foodplus-file-storage',
-        region:'ap-southeast-1'
+        accessKeyId: 'AKIAYNSZO2JYHIT24K4J',
+        secretAccessKey: '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',
+        Bucket: 'foodplus-file-storage',
+        region: 'ap-southeast-1'
     });
     const fileName = req.query['file-name'];
     const fileType = req.query['file-type'];
-    const input_name  = req.query['input-name'];
+    const input_name = req.query['input-name'];
     const tel = req.query['tel'];
     const s3Params = {
-      Bucket: 'foodplus-file-storage',
-      Key: `${input_name}-${tel}.${fileName}`,
-      Expires: 60,
-      ContentType: fileType,
-      //ACL: 'public-read'
+        Bucket: 'foodplus-file-storage',
+        Key: `${input_name}-${tel}.${fileName}`,
+        Expires: 60,
+        ContentType: fileType,
+        //ACL: 'public-read'
     };
-  
+
     s3.getSignedUrl('putObject', s3Params, (err, data) => {
-      if(err){
-        console.log(err);
-        return res.end();
-      }
-      const returnData = {
-        signedRequest: data,
-        input_url:`#url_${input_name}`,
-        url: `https://${S3_BUCKET}.s3.amazonaws.com/${input_name}-${tel}`
-      };
-      res.write(JSON.stringify(returnData));
-      res.end();
+        if (err) {
+            console.log(err);
+            return res.end();
+        }
+        const returnData = {
+            signedRequest: data,
+            input_url: `#url_${input_name}`,
+            url: `https://${S3_BUCKET}.s3.amazonaws.com/${input_name}-${tel}`
+        };
+        res.write(JSON.stringify(returnData));
+        res.end();
     });
-  });
-
-
-// Driver register route
-app.get('/dri_register', (req, res) => {
-    res.render('Driver_register')
-})
-// Driver login route
-app.get('/dri_login', (req, res) => {
-    res.render('Driver_Login')
-})
+});

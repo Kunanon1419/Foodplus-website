@@ -83,6 +83,7 @@
         height: 100%;
         margin: 0 20px;
     }
+
     /* wrapper */
     .break {
         flex-basis: 100%;
@@ -90,27 +91,20 @@
     }
 
     /* input */
-    .form-control:not(#confirm_password):not(#password) {
+    .form-control {
         margin: 0px auto;
-        border: 2px solid #000;
+        border: 1px solid gray;
         background-color: #fff;
         width: 500px;
         border-radius: 5px;
     }
 
+    .custom-file-label {
+        border: 1px solid gray;
+    }
 
-
-    /*.form-control-sm {
-        flex-direction: row;
-        margin: 5px 0px;
-        border: 2px solid #ffc000;
-        background-color: #fff;
-        width: 220px;
-        border-radius: 25px;
-        height: 39.2px;
-    }*/
-    .input-group-addon {
-        border-radius: 10px;
+    .btn {
+        border: 1px solid gray;
     }
 
     #div1 {}
@@ -130,11 +124,6 @@
     #div5 {
         display: none;
     }
-
-    .btn:not(#show_hide_Confirm_password):not(#show_hide_password) {
-        margin: 15px;
-        width: 500px;
-    }
 </style>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <div class="container" id="wrapper">
@@ -148,268 +137,311 @@
             <img src="/images/Driver/driver_main_edit.png" style="box-shadow: 0 2px 4px 0 #ffc000;" alt=""
                 class="flex-img-item">
         </div>
-        <div class="flex-container" style="justify-content: center;" id="div1">
-            <h2 style="color: #ffc000;">ลงทะเบียนผู้ขับ</h2>
-            <div class="break"></div>
-            <h4 style="color: rgb(100, 94, 94);">กรุณากรอกรายละเอียดผู้สมัครขับ</h4>
-            <div class="break"></div>
-            <div class="flex-items">
-                <div class="flex-container" style="justify-content: space-between;">
-                    <div class="flex-items-sm">
-                        <label for="">ชื่อ</label>
-                        <div class="break"></div>
-                        <input class="form-control" style="width: 220px; border: 2px solid #000;" type="text"
-                            placeholder="" aria-label="default input example">
-                    </div>
-                    <div class="flex-items-sm">
-                        <label for="">นามสกุล</label>
-                        <div class="break"></div>
-                        <input class="form-control" style="width: 220px; border: 2px solid #000;" type="text"
-                            placeholder="" aria-label="default input example">
-                    </div>
-                </div>
-                <label for="">หมายเลขบัตรประชาชน</label>
-                <input class="form-control" type="text" placeholder="" aria-label="default input example">
-                <label for="">เบอร์โทรศัพท์</label>
-                <input class="form-control" type="text" placeholder="" aria-label="default input example">
-                <label for="">อีเมล</label>
-                <input class="form-control" type="text" placeholder="" aria-label="default input example">
-            </div>
-            <div class="flex-items">
-                <label for="">เพศ</label>
-                <input class="form-control" type="text" placeholder="" aria-label="default input example">
-                <label for="">ที่อยู่ตามทะเบียนบ้าน</label>
-                <div class="break"></div>
-                <label for="">จังหวัด</label>
-                <!-- <input class="form-control" type="text" placeholder="" aria-label="default input example">-->
-                <select id="province" name="province" class="custom-select"
-                    style="border: 2px solid #000;background-color: #fff;">
-                    <option selected>กรุณาเลือกจังหวัด</option>
-                </select>
-
-                <div style="display: flex; justify-content: space-between;">
-                    <div style="width: auto;">
-                        <label for="">เขต/อำเภอ</label>
-                        <div class="break"></div>
-                        <!--<input class="form-control" id="sm" type="text" placeholder="" aria-label="default input example">-->
-                        <select id="amphur" name="amphur" class="custom-select"
-                            style="width:220px;border: 2px solid #000;background-color: #fff;">
-                            <option></option>
-                        </select>
-                    </div>
-                    <div style="width: auto;">
-                        <label for="">แขวง/ตำบล</label>
-                        <div class="break"></div>
-                        <!--<input class="form-control" id="sm" type="text" placeholder="" aria-label="default input example">-->
-                        <select id="district" name="district" class="custom-select"
-                            style="width:220px;border: 2px solid #000;background-color: #fff;">
-                            <option></option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <button type="button" class="btn btn-warning btn-lg btn-block">ถัดไป</button>
-        </div>
-
-        {{!-- <div class="flex-container" id="div2">
-            <div class="flex-items">
-                <h2 style="color: #ffc000;">ยืนยันอีเมล</h2>
-                <h4 style="color: #fff;">กรอกรหัส OTP ส่งไปที่ example@mail.com (ref:xxx) เพื่อทำรายการต่อไป</h4>
-                <div class="flex-container" style="justify-content: space-evenly">
-                    <h2 style="color: #ffc000;">OTP</h2>
-                    <input class="form-control-sm" style="width: fit-content;" type="text" placeholder=""
-                        aria-label="default input example">
-                </div>
-                <a id="btn_next2" href="#" class="button" style="text-align: center;">ต่อไป</a>
-            </div>
-        </div> --}}
-
-        <div class="flex-container" id="div3" style="justify-content: center;">
-            <div style="text-align: center;">
+        <form action="/api/dri_user" method="post">
+            <div class="flex-container" style="justify-content: center;" id="div1">
                 <h2 style="color: #ffc000;">ลงทะเบียนผู้ขับ</h2>
                 <div class="break"></div>
-                <h4 style="color: rgb(100, 94, 94);">กรุณาระบุพื้นที่ที่ต้องการสมัครขับ</h4>
-            </div>
-            <div class="break"></div>
-            <div class="flex-items">
-                <label for="">จังหวัด</label>
-                <select id="province_working" name="province" class="custom-select"
-                    style="border: 2px solid #000;background-color: #fff;">
-                    <option selected>กรุณาเลือกจังหวัด</option>
-                </select>
-                <p></p>
-                <label for="">แขวง/อำเภอ</label>
-                <select id="amphur_working" name="amphur" class="custom-select"
-                    style="border: 2px solid #000;background-color: #fff;">
-                    <option></option>
-                </select>
-
-                <div class="form-check" style="margin-top: 10px;">
-                    <div class="flex-container" style="justify-content: center;">
-                        <div style="display: flex;">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                ข้าพเจ้ายอมรับ
-                                <a href="#" style="color: #ffc000;">เงื่อนไขและข้อตกลง</a> ในการใช้บริการ
-                                <br>
-                                Food Driver
-                            </label>
+                <h4 style="color: rgb(100, 94, 94);">กรุณากรอกรายละเอียดผู้สมัครขับ</h4>
+                <div class="break"></div>
+                <div class="flex-items">
+                    <div class="flex-container" style="justify-content: space-between;">
+                        <div class="flex-items-sm">
+                            <label for="">ชื่อ</label>
+                            <div class="break"></div>
+                            <input id="first_name" name="first_name" class="form-control" style="width: 220px; border: 1px solid grey;" type="text"
+                                placeholder="" aria-label="default input example">
                         </div>
+                        <div class="flex-items-sm">
+                            <label for="">นามสกุล</label>
+                            <div class="break"></div>
+                            <input id="last_name" name="last_name" class="form-control" style="width: 220px; border: 1px solid grey;" type="text"
+                                placeholder="" aria-label="default input example">
+                        </div>
+                    </div>
+                    <label for="">หมายเลขบัตรประชาชน</label>
+                    <input id="Id_card_number" name="Id_card_number" class="form-control" type="text" placeholder="" aria-label="default input example">
+                    
+                    <label for="">เบอร์โทรศัพท์</label>
+                    <input id="tel" class="form-control" name="tel" type="text" placeholder="" aria-label="default input example">
+                    
+                    <label for="">อีเมล</label>
+                    <input id="email" class="form-control" name="email" type="text" placeholder="" aria-label="default input example">
+                </div>
+                <div class="flex-items">
+                    <label for="">เพศ</label>
+                    <select id="sex" name="sex" class="custom-select mb-2" style="border: 1px solid gray;">
+                        <option selected>กรุณาเลือก....</option>
+                        <option value="1">ชาย</option>
+                        <option value="2">หญิง</option>
+                    </select>
+                
+                    <label for="">ที่อยู่ตามทะเบียนบ้าน</label>
+                    <div class="break"></div>
+                    <label for="">จังหวัด</label>
+                    <select id="province" name="province" class="custom-select"
+                        style="border: 1px solid grey;background-color: #fff;">
+                    </select>
 
+                    <div style="display: flex; justify-content: space-between;">
+                        <div style="width: auto;">
+                            <label for="">เขต/อำเภอ</label>
+                            <div class="break"></div>
+                            <!--<input class="form-control" id="sm" type="text" placeholder="" aria-label="default input example">-->
+                            <select id="amphur" name="amphur" class="custom-select"
+                                style="width:220px;border: 1px solid grey;background-color: #fff;">
+                            </select>
+                        </div>
+                        <div style="width: auto;">
+                            <label for="">แขวง/ตำบล</label>
+                            <div class="break"></div>
+                            <!--<input class="form-control" id="sm" type="text" placeholder="" aria-label="default input example">-->
+                            <select id="district" name="district" class="custom-select"
+                                style="width:220px;border: 1px solid grey;background-color: #fff;">
+                            </select>
+                        </div>
                     </div>
                 </div>
-                <p></p>
-                {{!-- <button id="submitBtn" type="submit" disabled class="btn btn-warning btn-lg btn-block"
-                    onclick="document.getElementById('reCAPTCHA').submit();">ลงทะเบียน</button> --}}
+                <button type="button" class="btn btn-warning btn-lg btn-block"
+                    style="width: 500px;align-self: center;margin: 15px 0px;">ถัดไป</button>
             </div>
-            <div class="break"></div>
-            <button type="button" id="submitBtn" class="btn btn-warning btn-lg btn-block">ถัดไป</button>
-        </div>
-        <div class="flex-container" id="div4" style="justify-content: center;">
-            <div style="text-align: center;">
-                <h2 style="color: #ffc000;">ลงทะเบียนผู้ขับ</h2>
+
+            {{!-- <div class="flex-container" id="div2">
+                <div class="flex-items">
+                    <h2 style="color: #ffc000;">ยืนยันอีเมล</h2>
+                    <h4 style="color: #fff;">กรอกรหัส OTP ส่งไปที่ example@mail.com (ref:xxx) เพื่อทำรายการต่อไป</h4>
+                    <div class="flex-container" style="justify-content: space-evenly">
+                        <h2 style="color: #ffc000;">OTP</h2>
+                        <input class="form-control-sm" style="width: fit-content;" type="text" placeholder=""
+                            aria-label="default input example">
+                    </div>
+                    <a id="btn_next2" href="#" class="button" style="text-align: center;">ต่อไป</a>
+                </div>
+            </div> --}}
+
+            <div class="flex-container" id="div3" style="justify-content: center;">
+                <div style="text-align: center;">
+                    <h2 style="color: #ffc000;">ลงทะเบียนผู้ขับ</h2>
+                    <div class="break"></div>
+                    <h4 style="color: rgb(100, 94, 94);">กรุณาระบุพื้นที่ที่ต้องการสมัครขับ</h4>
+                </div>
+                <div class="break"></div>
+
+                <div class="flex-items">
+                    <label for="">จังหวัด</label>
+                    <select id="province_working" name="province_working" class="custom-select"
+                        style="border: 1px solid grey;background-color: #fff;">
+                        <option selected>กรุณาเลือกจังหวัด</option>
+                    </select>
+                    <p></p>
+                    <label for="">แขวง/อำเภอ</label>
+                    <select id="amphur_working" name="amphur_working" class="custom-select"
+                        style="border: 1px solid grey;background-color: #fff;">
+                        <option></option>
+                    </select>
+
+                    <div class="form-check" style="margin-top: 10px;">
+                        <div class="flex-container" style="justify-content: center;">
+                            <div style="display: flex;">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    ข้าพเจ้ายอมรับ
+                                    <a href="#" style="color: #ffc000;">เงื่อนไขและข้อตกลง</a> ในการใช้บริการ
+                                    <br>
+                                    Food Driver
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <p></p>
+                </div>
+                <div class="break"></div>
+                <button type="button" id="submitBtn" class="btn btn-warning btn-lg btn-block"
+                    style="width: 500px;margin: 15px 0px;">ถัดไป</button>
             </div>
-            <div class="break"></div>
-            <div class="flex-items">
-                <label for="">รหัสผ่าน</label>
-                <div class="input-group">
-                    <input name="password" id="password" class="form-control" type="password"
-                        placeholder="กรุณาระบุรหัสผ่านขั้นต่ำ 8-16 ตัวอักษรหรือตัวเลข" style="width: 415px;">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button" id="show_hide_password">
-                            <i class="fa fa-eye-slash" aria-hidden="true"></i>
-                        </button>
+            <div class="flex-container" id="div4" style="justify-content: center;">
+                <div style="text-align: center;">
+                    <h2 style="color: #ffc000;">ลงทะเบียนผู้ขับ</h2>
+                </div>
+                <div class="break"></div>
+                <div class="flex-items">
+                    <label for="">รหัสผ่าน</label>
+                    <div class="input-group">
+                        <input name="password" id="password" class="form-control" type="password"
+                            placeholder="กรุณาระบุรหัสผ่านขั้นต่ำ 8-16 ตัวอักษรหรือตัวเลข" style="width: 415px;">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button" id="show_hide_password">
+                                <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <p></p>
+                    <label for="">ยืนยันรหัสผ่าน</label>
+                    <div class="input-group">
+                        <input name="confirm_password" id="confirm_password" type="password" class="form-control"
+                            placeholder="กรุณาระบุรหัสผ่านอีกครั้ง" aria-label=""
+                            aria-describedby="button-addon2" style="width: 415px;">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button" id="show_hide_Confirm_password">
+                                <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <p></p>
-                <label for="">ยืนยันรหัสผ่าน</label>
-                <div class="input-group">
-                    <input name="confirm_password" id="confirm_password" type="password" class="form-control"
-                        placeholder="กรุณาระบุรหัสผ่านอีกครั้ง" aria-label="Recipient's username"
-                        aria-describedby="button-addon2" style="width: 415px;">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button" id="show_hide_Confirm_password">
-                            <i class="fa fa-eye-slash" aria-hidden="true"></i>
-                        </button>
+                <div class="break"></div>
+                <button type="button" class="btn btn-warning btn-lg btn-block"
+                    style="width: 500px;margin: 15px 0px;">ถัดไป</button>
+            </div>
+
+            <div class="flex-container" id="div5" style="justify-content: center;">
+                <div class="flex-items2">
+                    <div style="border: 2px solid #ffc000;border-radius: 3px;margin-bottom: 10px;"></div>
+                    <h3 id="head-font">ชำระค่าสมัคร</h3>
+                    <p>400 บาทเลขที่บัญชี<br>
+                        bank_id bank_name<br>
+                        ชื่อบัญชี: bank_acc_name
+                    </p>
+                    <div class="custom-file">
+                        <input type="hidden" id="url_Money_transfer_slip" name="url_Money_transfer_slip"
+                            value="">
+                        <input type="file" class="custom-file-input" id="Money_transfer_slip">
+                        <label class="custom-file-label" for="Money_transfer_slip">Choose file</label>
                     </div>
-                </div>
-            </div>
-            <div class="break"></div>
-            <button type="button" class="btn btn-warning btn-lg btn-block">ถัดไป</button>
-        </div>
 
-        <div class="flex-container" id="div5" style="justify-content: center;">
-            <div class="flex-items2">
-                <div style="border: 2px solid #ffc000;border-radius: 3px;margin-bottom: 10px;"></div>
-                <h3 id="head-font">ชำระค่าสมัคร</h3>
-                <p>400 บาทเลขที่บัญชี<br>
-                    bank_id bank_name<br>
-                    ชื่อบัญชี: bank_acc_name
-                </p>
-                <!--<a href="#" class="button" style="text-align: center;">แนบไฟล์</a>-->
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="Restaurant_business_ license">
-                    <label class="custom-file-label" for="Restaurant_business_ license">Choose file</label>
                 </div>
+                <div class="flex-items2">
+                    <div style="border: 2px solid #ffc000;border-radius: 3px;margin-bottom: 10px"></div>
+                    <h3 id="head-font">ส่งเอกสาร</h3>
+                    <span>กรุณาแนบเอกสารที่ใช้ในการสมัครดังนี้ <br>
+                        1.สำเนาบัตรประชาชน
+                    </span>
+                    <div class="custom-file mb-3">
+                        <input type="hidden" id="url_Copy_Driver_Id_card_number" name="url_Copy_Driver_Id_card_number"
+                            value="">
+                        <input type="file" class="custom-file-input" id="Copy_Driver_Id_card_number">
+                        <label class="custom-file-label" for="Copy_Driver_Id_card_number">Choose file</label>
+                    </div>
+                    <input id="Id_exp_datepicker" name="Id_exp_datepicker" onkeydown="return false" placeholder="วันหมดอายุบัตรประชาชน"
+                        style="width: 100px;">
+                    <script>
+                        $('#Id_exp_datepicker').datepicker({
+                            uiLibrary: 'bootstrap4',
+                            format: 'mm/dd/yyyy'
+                        });
+                    </script>
+                    <p></p>
 
-            </div>
-            <div class="flex-items2">
-                <div style="border: 2px solid #ffc000;border-radius: 3px;margin-bottom: 10px"></div>
-                <h3 id="head-font">ส่งเอกสาร</h3>
-                <span>กรุณาแนบเอกสารที่ใช้ในการสมัครดังนี้ <br>
-                    1.สำเนาบัตรประชาชน
-                </span>
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="Restaurant_business_ license">
-                    <label class="custom-file-label" for="Restaurant_business_ license">Choose file</label>
-                </div>
-                <br>
-                <input id="Id_exp_datepicker" onkeydown="return false" placeholder="วันหมดอายุเอกสาร"
-                    style="width: 100px;margin-top: 5px;">
-                <p></p>
-                <span>2.สำเนาใบขับขี่</span>
-                <!--<a href="#" class="button" style="text-align: center;">แนบไฟล์</a>-->
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="Restaurant_business_ license">
-                    <label class="custom-file-label" for="Restaurant_business_ license">Choose file</label>
-                </div>
-                <input id="Driver_exp_datepicker" onkeydown="return false" placeholder="วันหมดอายุเอกสาร"
-                    style="width: 100px;margin-top: 5px;">
-                <p></p>
 
-                <span>3.สำเนาหน้าสมุดธนาคาร</span>
-                <!--<a href="#" class="button" style="text-align: center;">แนบไฟล์</a>-->
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="Restaurant_business_ license">
-                    <label class="custom-file-label" for="Restaurant_business_ license">Choose file</label>
+                    <span>2.สำเนาใบขับขี่</span>
+                    <div class="custom-file mb-3">
+                        <input type="hidden" id="url_Copy_driver_license" name="url_Copy_driver_license" value="">
+                        <input type="file" class="custom-file-input" id="Copy_driver_license">
+                        <label class="custom-file-label" for="Copy_driver_license">Choose file</label>
+                    </div>
+                    <input id="Driver_exp_datepicker" name="Driver_exp_datepicker" onkeydown="return false" placeholder="วันหมดอายุใบขับขี่"
+                        style="width: 100px;">
+                    <script>
+                        $('#Driver_exp_datepicker').datepicker({
+                            uiLibrary: 'bootstrap4',
+                            format: 'mm/dd/yyyy'
+                        });
+                    </script>
+                    <p></p>
+
+                    <span>3.สำเนาพ.ร.บ</span>
+                    <div class="custom-file mb-3">
+                        <input type="hidden" id="url_copy_Act_legislation" name="url_copy_Act_legislation" value="">
+                        <input type="file" class="custom-file-input" id="copy_Act_legislation">
+                        <label class="custom-file-label" for="copy_Act_legislation">Choose file</label>
+                    </div>
+                    <input id="Act_legislation_exp_date" name="Act_legislation_exp_date" onkeydown="return false" placeholder="วันหมดอายุพ.ร.บ"
+                        style="width: 100px;">
+                    <script>
+                        $('#Act_legislation_exp_date').datepicker({
+                            uiLibrary: 'bootstrap4',
+                            format: 'mm/dd/yyyy'
+                        });
+                    </script>
+                    <p></p>
+                </div>
+                <div class="flex-items2">
+                    <div style="border: 2px solid #ffc000;border-radius: 3px;margin-bottom: 10px"></div>
+                    <h3 id="head-font">รอดำเนินการ</h3>
+                    <p>บริษัทกำลังพิจารณาคุณสมบัติกรุณารอรับอีเมล</p>
+                    <button type="submit" id="submitForm" class="btn btn-warning btn-lg btn-block"
+                        style="width: 100%;margin: 15px 0px;">ตกลง</button>
                 </div>
             </div>
-            <div class="flex-items2">
-                <div style="border: 2px solid #ffc000;border-radius: 3px;margin-bottom: 10px"></div>
-                <h3 id="head-font">รอดำเนินการ</h3>
-                <p>บริษัทกำลังพิจารณาคุณสมบัติกรุณารอรับอีเมล</p>
-            </div>
-            <button style="border-radius: 20px;padding: 6px; widht:220px;" type="submit"
-                class="btn btn-warning btn-lg btn-block">ลงทะเบียน</button>
-            </div.>
-        </div>
+        </form>
     </div>
 </div>
-<script type="text/javascript" src="/auto_province/AutoProvince.min.js"></script>
-<script>
-    $('body').AutoProvince({
-        PROVINCE: '#province,#province_working', // select div สำหรับรายชื่อจังหวัด
-        AMPHUR: '#amphur,#amphur_working', // select div สำหรับรายชื่ออำเภอ
-        DISTRICT: '#district', // select div สำหรับรายชื่อตำบล
-        POSTCODE: '#postcode', // input field สำหรับรายชื่อรหัสไปรษณีย์
-        GEOGRAPHY: '#geography', // input field แสดงภาค
-        CURRENT_PROVINCE: 4, //  แสดงค่าเริ่มต้น ใส่ไอดีจังหวัดที่เคยเลือกไว้
-        CURRENT_AMPHUR: 4, // แสดงค่าเริ่มต้น  ใส่ไอดีอำเภอที่เคยเลือกไว้
-        CURRENT_DISTRICT: 1, // แสดงค่าเริ่มต้น  ใส่ไอดีตำบลที่เคยเลือกไว้
-        arrangeByName: true // กำหนดให้เรียงตามตัวอักษร
-    });
 
-    $('.btn:not(#search_location,#show_hide_password,#show_hide_Confirm_password,#submitForm)').not('[id^="upload-"]')
-        .click(function () {
-            $(this).parent().hide().next().css('display', 'flex')
-            //e.preventDefault();
-            //return false;
+<script type="text/javascript" src="/auto_province/AutoProvince.min.js"></script>
+<script src="/js/Driver_register.js"></script>
+<script>
+    /*
+      Function to carry out the actual PUT request to S3 using the signed request from the app.
+    */
+    function uploadFile(file, signedRequest, url, input_url) {
+        const xhr = new XMLHttpRequest();
+        xhr.open('PUT', signedRequest);
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    $(input_url).val(url);
+                    const test = $(input_url).val();
+                    alert(test);
+                }
+                else {
+                    alert(`Error:${xhr.status} Could not upload file.`);
+                }
+            }
+        };
+        xhr.send(file);
+    }
+    /*
+      Function to get the temporary signed request from the app.
+      If request successful, continue to upload the file using this signed
+      request.
+    */
+    function getSignedRequest(file, input_name, tel) {
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}&input-name=${input_name}&tel=${tel}`);
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    const response = JSON.parse(xhr.responseText);
+                    uploadFile(file, response.signedRequest, response.url, response.input_url);
+                }
+                else {
+                    alert('Could not get signed URL.');
+                }
+            }
+        };
+        xhr.send();
+    }
+    /*
+     Function called when file input updated. If there is a file selected, then
+     start upload procedure by asking for a signed request from the app.
+    */
+    function initUpload(e) {
+        //const files = document.getElementById('file-input').files;
+        const files = document.getElementById(e).files;
+        const file = files[0];
+        const input_name = e;
+        const tel = $('#tel').val();
+        //alert(`${input_name} ${tel}`)
+        if (file == null) {
+            return alert('No file selected.');
+        }
+        getSignedRequest(file, input_name, tel);
+    }
+    /*
+     Bind listeners when the page loads.
+    */
+    (() => {
+        $('.custom-file-input').change(function (e) {
+            initUpload(e.target.id);
         });
-    /*reCAPTCHA callback*/
-    // set default checkbox to uncheck
-    $('#flexCheckDefault').prop('checked', false);
-    $('#flexCheckDefault').change(function () {
-        let isChecked = $('#flexCheckDefault').is(':checked');
-        if (isChecked) {
-            $('#submitBtn').removeAttr('disabled');
-        } else {
-            $('#submitBtn').attr('disabled');
-        }
-        return false;
-    });
-    // hide or show password function
-    $("#show_hide_password").on('click', function (event) {
-        event.preventDefault();
-        if ($('#password').attr("type") == "text") {
-            $('#password').attr('type', 'password');
-            $('#show_hide_password i').addClass("fa-eye-slash");
-            $('#show_hide_password i').removeClass("fa-eye");
-        } else if ($('#password').attr("type") == "password") {
-            $('#password').attr('type', 'text');
-            $('#show_hide_password i').removeClass("fa-eye-slash");
-            $('#show_hide_password i').addClass("fa-eye");
-        }
-    });
-    $("#show_hide_Confirm_password").on('click', function (event) {
-        event.preventDefault();
-        if ($('#confirm_password').attr("type") == "text") {
-            $('#confirm_password').attr('type', 'password');
-            $('#show_hide_Confirm_password i').addClass("fa-eye-slash");
-            $('#show_hide_Confirm_password i').removeClass("fa-eye");
-        } else if ($('#confirm_password').attr("type") == "password") {
-            $('#confirm_password').attr('type', 'text');
-            $('#show_hide_Confirm_password i').removeClass("fa-eye-slash");
-            $('#show_hide_Confirm_password i').addClass("fa-eye");
-        }
-    });
+        //document.getElementById('file-input').onchange = initUpload;
+    })();
 </script>

@@ -1,9 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const res_users = require('../../res_users');
 
 router.post('/', (req, res) => {
-    const newUser = {
+    const restaurant_info = {
         first_name: req.body.first_name,
         last_name: req.body.last_name,
         tel: req.body.tel,
@@ -16,19 +15,19 @@ router.post('/', (req, res) => {
         ampur: req.body.ampur,
         district: req.body.district,
         password: req.body.password,
-        url_Copy_Id_card_number: req.body.url_Copy_Id_card_number,
+        url_Copy_Res_Id_card_number: req.body.url_Copy_Res_Id_card_number,
         url_Restaurant_business_license: req.body.url_Restaurant_business_license,
         url_Copy_res_house_registration: req.body.url_Copy_res_house_registration,
         url_Restaurant_Photo: req.body.url_Restaurant_Photo,
         url_Copy_bank_book: req.body.url_Copy_bank_book
     }
-    if (!newUser.first_name || !newUser.email) {
+    if (!restaurant_info.first_name || !restaurant_info.email) {
         return res.status(400).json({
             msg: "Please include a name and email"
         });
     }
     //res_users.push(newUser);
-    res.json(newUser);
+    res.json(restaurant_info);
     res.redirect('/');
 })
 module.exports = router;
