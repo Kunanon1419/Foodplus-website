@@ -3,6 +3,7 @@
  */
 const express = require('express');
 const aws = require('aws-sdk');
+
 const path = require('path');
 const app = express();
 const cokieSession = require('cookie-session');
@@ -12,8 +13,10 @@ const moment = require('moment');
 const PORT = process.env.PORT || 5000;
 //const dbConnection = require('./db_root_connection');
 
-const S3_BUCKET = process.env.S3_BUCKET;
-aws.config.region = 'ap-southeast-1';
+//aws.config.region = 'ap-southeast-1';
+const S3_BUCKET = 'foodplus-file-storage';
+
+
 /* Express middleware*/
 const {
     body,
@@ -25,8 +28,6 @@ const logger = require('./middleware/logger');
 const exphbs = require('express-handlebars');
 /*set up api */
 const res_users = require('./res_users');
-
-
 
 /* BodyParser */
 app.use(express.urlencoded({
@@ -90,31 +91,45 @@ app.get('/res_register', (req, res) => {
         res_type,
     })
 })
+/*
+ * Respond to GET requests to /sign-s3.
+ * Upon request, return JSON containing the temporarily-signed S3 request and
+ * the anticipated URL of the image.
+ */
 app.get('/sign-s3', (req, res) => {
-    const s3 = new aws.S3();
+    const s3 = new aws.S3({
+        accessKeyId:'AKIAYNSZO2JYHIT24K4J',
+        secretAccessKey:'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',
+        Bucket:'foodplus-file-storage',
+        region:'ap-southeast-1'
+    });
     const fileName = req.query['file-name'];
     const fileType = req.query['file-type'];
+    const input_name  = req.query['input-name'];
+    const tel = req.query['tel'];
     const s3Params = {
-        Bucket: S3_BUCKET,
-        Key: fileName,
-        Expires: 60,
-        ContentType: fileType,
-        ACL: 'public-read'
+      Bucket: 'foodplus-file-storage',
+      Key: `${input_name}-${tel}.${fileName}`,
+      Expires: 60,
+      ContentType: fileType,
+      //ACL: 'public-read'
     };
-
+  
     s3.getSignedUrl('putObject', s3Params, (err, data) => {
-        if (err) {
-            console.log(err);
-            return res.end();
-        }
-        const returnData = {
-            signedRequest: data,
-            url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`
-        };
-        res.write(JSON.stringify(returnData));
-        res.end();
+      if(err){
+        console.log(err);
+        return res.end();
+      }
+      const returnData = {
+        signedRequest: data,
+        input_url:`#url_${input_name}`,
+        url: `https://${S3_BUCKET}.s3.amazonaws.com/${input_name}-${tel}`
+      };
+      res.write(JSON.stringify(returnData));
+      res.end();
     });
-});
+  });
+
 
 // Driver register route
 app.get('/dri_register', (req, res) => {
@@ -124,7 +139,3 @@ app.get('/dri_register', (req, res) => {
 app.get('/dri_login', (req, res) => {
     res.render('Driver_Login')
 })
-
-
-// app.use(express.urlencoded({extended: false}));
-// app.use(express.json());

@@ -193,15 +193,15 @@
                         </div>
                         <p></p>
                         <h5>หมายเลขโทรศัพท์</h5>
-                        <input name="tel" class="form-control" type="text" placeholder=""
+                        <input name="tel" id="tel" class="form-control" type="text" placeholder=""
                             aria-label="default input example" required>
                         <p></p>
                         <h5>เลขประจำตัวประชาชน 13 หลัก</h5>
-                        <input name="tel" class="form-control" type="text" placeholder=""
+                        <input name="Id_card_number" class="form-control" type="text" placeholder=""
                             aria-label="default input example" required>
                         <p></p>
                         <h5>หมายเลขบัญชีธนาคารไทยพาณิชย์</h5>
-                        <input name="tel" class="form-control" type="text" placeholder=""
+                        <input name="Account_number" class="form-control" type="text" placeholder=""
                             aria-label="default input example" required>
                         <p></p>
                         <div class="break"></div>
@@ -214,7 +214,7 @@
                     {{!-- <button type="submit" class="btn btn-warning btn-lg btn-block valid_btn"
                         onclick="">ถัดไป</button> --}}
                     {{!-- <a id="next" href="#" class="button" style="text-align: center;">ถัดไป</a> --}}
-                    <button type="submit" class="btn btn-warning btn-lg btn-block" onclick="">ถัดไป</button>
+                    <button type="button" class="btn btn-warning btn-lg btn-block" onclick="">ถัดไป</button>
                 </div>
 
                 {{!-- div 2 --}}
@@ -254,7 +254,7 @@
                         </div>
                         <div class="break"></div>
                     </div>
-                    <button type="submit" class="btn btn-warning btn-lg btn-block" onclick="">ถัดไป</button>
+                    <button type="button" class="btn btn-warning btn-lg btn-block" onclick="">ถัดไป</button>
                 </div>
 
                 {{!-- div 4 --}}
@@ -298,7 +298,7 @@
                         </div>
                     </div>
                     <div class="break"></div>
-                    <button type="submit" class="btn btn-warning btn-lg btn-block" onclick="">ถัดไป</button>
+                    <button type="button" class="btn btn-warning btn-lg btn-block" onclick="">ถัดไป</button>
                 </div>
 
                 {{!-- div 5 --}}
@@ -351,7 +351,7 @@
                         {{!-- <button id="submitBtn" type="submit" disabled class="btn btn-warning btn-lg btn-block"
                             onclick="document.getElementById('reCAPTCHA').submit();">ลงทะเบียน</button> --}}
                     </div>
-                    <button id="submitBtn" disabled type="submit"
+                    <button id="submitBtn" disabled type="button"
                         class="btn btn-warning btn-lg btn-block">ลงทะเบียน</button>
                 </div>
 
@@ -367,6 +367,7 @@
                                 <span>กรุณาแนบเอกสารที่ใช้ในการสมัครดังนี้ <br>
                                     1.สำเนาบัตรประชาชน
                                 </span>
+                                {{!-- <input type="file" id="file-input"> --}}
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <button class="btn btn-warning" type="submit" id="upload-Copy_Id_card_number">
@@ -374,8 +375,8 @@
                                         </button>
                                     </div>
                                     <div class="custom-file">
-                                        <input type="hidden" id="avatar-url" name="avatar-url" value="">
-                                        <input type="file" class="custom-file-input" id="Copy_Id_card_number">
+                                        <input type="hidden" id="url_Copy_Id_card_number" name="url_Copy_Id_card_number" value="">
+                                        <input type="file" class="custom-file-input" id="Copy_Id_card_number" name="Copy_Id_card_number">
                                         <label class="custom-file-label" for="Copy_Id_card_number">Choose
                                             file</label>
                                     </div>
@@ -394,9 +395,9 @@
                                         </button>
                                     </div>
                                     <div class="custom-file">
+                                        <input type="hidden" id="url_Restaurant_business_license" name="url_Restaurant_business_license" value="">
                                         <input type="file" class="custom-file-input" id="Restaurant_business_license">
-                                        <label class="custom-file-label" for="Restaurant_business_ license">Choose
-                                            file</label>
+                                        <label class="custom-file-label" for="Restaurant_business_license">Choose file</label>
                                     </div>
                                 </div>
 
@@ -409,9 +410,9 @@
                                         </button>
                                     </div>
                                     <div class="custom-file">
+                                        <input type="hidden" id="url_Copy_res_house_registration" name="url_Copy_res_house_registration" value="">
                                         <input type="file" class="custom-file-input" id="Copy_res_house_registration">
-                                        <label class="custom-file-label" for="Copy_res_house_registration">Choose
-                                            file</label>
+                                        <label class="custom-file-label" for="Copy_res_house_registration">Choose file</label>
                                     </div>
                                 </div>
 
@@ -424,6 +425,7 @@
                                         </button>
                                     </div>
                                     <div class="custom-file">
+                                        <input type="hidden" id="url_Restaurant_Photo" name="url_Restaurant_Photo" value="">
                                         <input type="file" class="custom-file-input" id="Restaurant_Photo">
                                         <label class="custom-file-label" for="Restaurant_Photo">Choose file</label>
                                     </div>
@@ -437,6 +439,7 @@
                                         </button>
                                     </div>
                                     <div class="custom-file">
+                                        <input type="hidden" id="url_Copy_bank_book" name="url_Copy_bank_book" value="">
                                         <input type="file" class="custom-file-input" id="Copy_bank_book">
                                         <label class="custom-file-label" for="Copy_bank_book">Choose file</label>
                                     </div>
@@ -465,17 +468,18 @@
     /*
       Function to carry out the actual PUT request to S3 using the signed request from the app.
     */
-    function uploadFile(file, signedRequest, url) {
+    function uploadFile(file, signedRequest, url,input_url) {
         const xhr = new XMLHttpRequest();
         xhr.open('PUT', signedRequest);
         xhr.onreadystatechange = () => {
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
-                    //document.getElementById('preview').src = url;
-                    document.getElementById('avatar-url').value = url;
+                    $(input_url).val(url);
+                    const test = $(input_url).val();
+                    alert(test);
                 }
                 else {
-                    alert('Could not upload file.');
+                    alert(`Error:${xhr.status} Could not upload file.`);
                 }
             }
         };
@@ -487,14 +491,14 @@
       If request successful, continue to upload the file using this signed
       request.
     */
-    function getSignedRequest(file) {
+    function getSignedRequest(file,input_name,tel) {
         const xhr = new XMLHttpRequest();
-        xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}`);
+        xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}&input-name=${input_name}&tel=${tel}`);
         xhr.onreadystatechange = () => {
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
                     const response = JSON.parse(xhr.responseText);
-                    uploadFile(file, response.signedRequest, response.url);
+                    uploadFile(file, response.signedRequest, response.url, response.input_url);
                 }
                 else {
                     alert('Could not get signed URL.');
@@ -508,20 +512,27 @@
      Function called when file input updated. If there is a file selected, then
      start upload procedure by asking for a signed request from the app.
     */
-    function initUpload() {
-        const files = document.getElementById('file-input').files;
+    function initUpload(e) {
+        //const files = document.getElementById('file-input').files;
+        const files = document.getElementById(e).files;
         const file = files[0];
+        const input_name = e;
+        const tel = $('#tel').val();
+        //alert(`${input_name} ${tel}`)
         if (file == null) {
             return alert('No file selected.');
         }
-        getSignedRequest(file);
+        getSignedRequest(file,input_name,tel);
     }
 
     /*
      Bind listeners when the page loads.
     */
     (() => {
-        document.getElementById('file-input').onchange = initUpload;
+        $('.custom-file-input').change(function(e){
+            initUpload(e.target.id);
+        });
+        //document.getElementById('file-input').onchange = initUpload;
     })();
 
 </script>
