@@ -1,0 +1,595 @@
+<style>
+    @font-face {
+        font-family: foodplus-light;
+        src: url('/font/rsufont/RSU_light.ttf')
+    }
+
+    * {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+        font-family: 'foodplus-light';
+    }
+
+    #f_shadow {
+        text-shadow: 2px 2px 11px rgba(0, 0, 0, 0.8);
+        margin: 0;
+    }
+
+    html,
+    body {
+        height: 100%;
+        width: 100%;
+
+    }
+
+    /* set fullscreen */
+    html,
+    body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    #wrapper {
+        min-height: 100vh;
+        min-width: 100%;
+    }
+
+    /* font_style */
+    #head-font {
+        color: #ffc000;
+        font-weight: bold;
+    }
+
+    #upload-style {
+        color: #fff;
+        text-shadow: 2px 2px 11px rgba(0, 0, 0, 0.3);
+    }
+
+    /*Grid layout*/
+    .container {
+        display: grid;
+        grid-template:
+            'header header'1fr 'main main'9fr /1fr;
+        padding: 0;
+    }
+
+    header {
+        grid-area: header;
+    }
+
+    .main {
+        grid-area: main;
+        background-image: url(/images/Restaurant/food-compress.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    /*flex parent*/
+    .flex-container {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .flex-container>.flex-items {
+        color: grey;
+
+    }
+
+    .flex-container>* {
+        text-shadow: 2px 2px 11px rgba(0, 0, 0, 0.1);
+    }
+
+    .flex-img-item {
+        max-width: 100vh;
+        max-height: 100vh;
+        ;
+    }
+
+    .flex-items-box {
+        min-width: 500px;
+        width: auto;
+        height: auto;
+        padding: 50px 50px;
+        background-color: #fff;
+        border-radius: 25px;
+        /*shadow box*/
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
+
+    .flex-item {
+        align-items: flex-start;
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+
+    /*wrapper*/
+    .break {
+        flex-basis: 100%;
+        height: 0;
+    }
+
+    /*input */
+    .form-control {
+        border: 2px solid grey;
+        width: 480px;
+        border-radius: 10px;
+    }
+
+    .form-control-sm {
+        flex-direction: row;
+        margin: 5px 0px;
+        border: 2px solid #000;
+        background-color: #fff;
+        width: 220px;
+        border-radius: 25px;
+        height: 39.2px;
+    }
+
+    .input-group-addon {
+        border-radius: 10px;
+    }
+
+    .btnOnIcon {
+        background: none;
+        border: none;
+    }
+
+    /* button Accept,Upload,Next*/
+    .button {
+        display: inline-block;
+        padding: 0.2rem 1.25rem;
+        border-radius: 10rem;
+        color: #fff;
+        text-transform: uppercase;
+        font-size: 1.2rem;
+        letter-spacing: 0.15rem;
+        transition: all 0.3s;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        width: 100%;
+        height: 40px;
+        text-decoration: none;
+        /*margin-top: 10px;
+        margin-bottom: 5px;*/
+        margin: auto;
+        box-shadow: 2px 2px 11px rgba(0, 0, 0, 0.2);
+        text-shadow: 2px 2px 11px rgba(0, 0, 0, 0.5);
+    }
+
+    .button:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #ffc000;
+        border-radius: 10rem;
+        z-index: -2;
+    }
+
+    .button:before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0%;
+        height: 100%;
+        background-color: #ff7700;
+        transition: all 0.3s;
+        border-radius: 10rem;
+        z-index: -1;
+    }
+
+    .button:hover {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .button:hover:before {
+        width: 100%;
+    }
+
+    button {
+        color: #fff;
+        text-shadow: 2px 2px 11px rgba(0, 0, 0, 0.3);
+    }
+
+    /*Display*/
+    #div1 {}
+
+    #div2 {
+        display: none;
+    }
+
+    #div3 {
+        display: none;
+    }
+
+    #div4 {
+        display: none;
+    }
+
+    #div5 {
+        display: none;
+    }
+
+    #div6 {
+        display: none;
+    }
+
+    .valid_btn {}
+</style>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<div class="container" id="wrapper">
+    {{> checkbox_alert}}
+    {{> mapAPI_modal}}
+    <header>
+        {{> restaurant_header}}
+    </header>
+    <div class="main">
+        <div class="flex-container" style="justify-content: center; min-height: 100vh;min-width: 100vh;">
+            <form action="/api/res_user" method="post">
+                {{!-- div 1 --}}
+                <div id="div1" class="flex-items-box">
+                    <h1 id="head-font">ลงทะเบียนร้านเดลิเวอรี่</h1>
+                    <div class="break"></div>
+                    <h3>รายละเอียดผู้ติดต่อ</h3>
+                    <div class="flex-item">
+                        <div class="flex-container" style="justify-content: space-between;">
+                            <div class="flex-item">
+                                <h5>ชื่อ</h5>
+                                <div class="break"></div>
+                                <input name="first_name" class="form-control" type="text" placeholder=""
+                                    aria-label="default input example" style="width: 235px;" required>
+                            </div>
+                            <div class="flex-item" style="flex-direction: ;">
+                                <h5>นามสกุล</h5>
+                                <div class="break"></div>
+                                <input name="last_name" class="form-control" type="text" placeholder=""
+                                    aria-label="default input example" style="width: 235px;" required>
+                            </div>
+                        </div>
+                        <p></p>
+                        <h5>หมายเลขโทรศัพท์</h5>
+                        <input name="tel" class="form-control" type="text" placeholder=""
+                            aria-label="default input example" required>
+                        <p></p>
+                        <h5>เลขประจำตัวประชาชน 13 หลัก</h5>
+                        <input name="tel" class="form-control" type="text" placeholder=""
+                            aria-label="default input example" required>
+                        <p></p>
+                        <h5>หมายเลขบัญชีธนาคารไทยพาณิชย์</h5>
+                        <input name="tel" class="form-control" type="text" placeholder=""
+                            aria-label="default input example" required>
+                        <p></p>
+                        <div class="break"></div>
+                        <h5>อีเมล</h5>
+                        <div class="break"></div>
+                        <input name="email" class="form-control" type="email" placeholder=""
+                            aria-label="default input example" required>
+                        <p></p>
+                    </div>
+                    {{!-- <button type="submit" class="btn btn-warning btn-lg btn-block valid_btn"
+                        onclick="">ถัดไป</button> --}}
+                    <a id="next" href="#" class="button" style="text-align: center;">ถัดไป</a>
+                </div>
+
+                {{!-- div 2 --}}
+                {{!-- <div id="div2" class="flex-items-box">
+                    <div class="flex-items">
+                        <h1 style="color:#ffc000">ยืนยันอีเมล</h1>
+                        <div style="font-family: 'foodplus-light'">
+                            <h5>กรอกรหัส OTP ส่งไปที่ example@mail.com (ref:xxx) เพื่อทำรายการต่อไป</h5>
+                            <div class="flex-container" style="justify-content: space-evenly">
+                                <h2>OTP</h2>
+                                <input name="otp" class="form-control-sm" style="width: fit-content;" type="text"
+                                    placeholder="" aria-label="default input example">
+                            </div>
+                        </div>
+                    </div>
+                    <a id="next" href="#" class="button" style="text-align: center;">ถัดไป</a>
+                </div> --}}
+
+                {{!-- div 3 --}}
+                <div id="div3" class="flex-items-box">
+                    <h1 id="head-font">ลงทะเบียนร้านเดลิเวอรี่</h1>
+                    <div class="break"></div>
+                    <h3>รายละเอียดธุรกิจ</h3>
+                    <div class="flex-item">
+                        <h5>ชื่อร้าน</h5>
+                        <input name="restaurant_name" class="form-control" type="text" placeholder=""
+                            aria-label="default input example">
+                        <div class="flex-container" style="margin: 10px auto;">
+                            <div class="flex-item" style="width: 480px;">
+                                <h5>ประเภทธุรกิจ</h5>
+                                <select name="restaurant_type_name" class="custom-select" title="เลือกประเภทธุรกิจ">
+                                    {{#each res_type}}
+                                    <option>{{this}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="break"></div>
+                    </div>
+                    <a id="next" href="#" class="button" style="text-align: center;">ถัดไป</a>
+                </div>
+
+                {{!-- div 4 --}}
+                <div class="flex-items-box" id="div4">
+                    <h1 id="head-font">ลงทะเบียนร้านเดลิเวอรี่</h1>
+                    <div class="break"></div>
+                    <h3>ที่ตั้งธุรกิจ</h3>
+                    <h5 style="margin-top: 10px;">เลือกตำแหน่งร้านจากแผนที่</h5>
+                    <div class="input-group">
+                        <input id="location" name="location" type="text" class="form-control"
+                            placeholder="พิมพ์ชื่อร้าน หรือสถานที่ใกล้เคียงเพื่อหาร้าน"
+                            aria-label="Recipient's username" aria-describedby="button-addon2" style="width: 415px;">
+                        <div class="input-group-append">
+                            <button id="search_location" class="btn btn-outline-secondary" type="button"
+                                data-toggle="modal" data-target="#mapModal">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <h5 style="margin-top: 10px;">ที่อยู่ธุรกิจ</h5>
+                    <input name="address" class="form-control" type="text" placeholder=""
+                        aria-label="default input example">
+
+                    <h5 style="margin-top: 10px;">จังหวัด</h5>
+                    <select id="province" name="province" class="custom-select">
+                        <option selected>กรุณาเลือกจังหวัด</option>
+                    </select>
+                    <div class="flex-container" style="margin: 10px auto;">
+                        <div class="flex-item" style="width: 235px;">
+                            <h5>แขวง/อำเภอ</h5>
+                            <select id="amphur" name="amphur" class="custom-select" style="margin-right: 4px;">
+                                <option></option>
+                            </select>
+                        </div>
+                        <div class="flex-item" style="width: 235px;">
+                            <h5>เขต/ตำบล</h5>
+                            <select id="district" name="district" class="custom-select" style="margin-left: 4px;">
+                                <option></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="break"></div>
+                    <a id="next" href="#" class="button" style="text-align: center;">ต่อไป</a>
+                </div>
+
+                {{!-- div 5 --}}
+                <div class="flex-items-box" id="div5">
+                    <div style="text-align: center;">
+                        <h1 style="color: #ffc000;">ลงทะเบียนร้านเดลิเวอรี่</h1>
+                    </div>
+                    <div class="break"></div>
+                    <div class="flex-items">
+                        <label for="">รหัสผ่าน</label>
+                        <div class="input-group">
+                            <input name="password" id="password" class="form-control" type="password"
+                                placeholder="กรุณาระบุรหัสผ่านขั้นต่ำ 8-16 ตัวอักษรหรือตัวเลข" style="width: 415px;">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button" id="show_hide_password">
+                                    <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <p></p>
+                        <label for="">ยืนยันรหัสผ่าน</label>
+                        <div class="input-group">
+                            <input name="confirm_password" id="confirm_password" type="password" class="form-control"
+                                placeholder="กรุณาระบุรหัสผ่านอีกครั้ง" aria-label="Recipient's username"
+                                aria-describedby="button-addon2" style="width: 415px;">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button" id="show_hide_Confirm_password">
+                                    <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    {{!-- <form action="?" method="POST" id="reCAPTCHA"></form> --}}
+                    <div class="flex-container" style="justify-content: center;margin: 10px auto;">
+                        {{!-- <form action="?" id="reCAPTCHA" style="margin-top: 5px;">
+                            <div class="g-recaptcha" data-callback="reCAPTCHACallback"
+                                data-sitekey="6Le9o0MaAAAAAGPyhr4ffu9oMT2A2OtRC86B0a1v"></div>
+                        </form> --}}
+                    </div>
+                    <div class="flex-container" style="justify-content: center;">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                ข้าพเจ้ายอมรับ <a href="#" style="color: #ffc000;">เงื่อนไขและข้อตกลง</a> ในการใช้บริการ
+                                <br>
+                                Food Merchant Management
+                            </label>
+                        </div>
+                        <p></p>
+                        {{!-- <button id="submitBtn" type="submit" disabled class="btn btn-warning btn-lg btn-block"
+                            onclick="document.getElementById('reCAPTCHA').submit();">ลงทะเบียน</button> --}}
+                    </div>
+                    <button id="submitBtn" type="submit" class="btn btn-warning btn-lg btn-block">ลงทะเบียน</button>
+                </div>
+
+                {{!-- div 6 --}}
+                <div class="flex-items-box" id="div6">
+                    <div class="flex-container">
+                        <div style="display: flex;">
+                            <div class="flex-item">
+                                <div style="border: 5px solid #ffc000;border-radius: 5px;margin:0px auto;width: 100%;">
+                                </div>
+                                <p></p>
+                                <h3 id="head-font">ส่งเอกสาร</h3>
+                                <span>กรุณาแนบเอกสารที่ใช้ในการสมัครดังนี้ <br>
+                                    1.สำเนาบัตรประชาชน
+                                </span>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <button class="btn btn-warning" type="button" id="upload-style">
+                                            <i class="fa fa-upload"></i> แนบไฟล์
+                                        </button>
+                                    </div>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="Copy_Id_card_number">
+                                        <label class="custom-file-label" for="Copy_Id_card_number">Choose file</label>
+                                    </div>
+                                </div>
+                                <input id="Id_exp_datepicker" onkeydown="return false" placeholder="วันหมดอายุเอกสาร"
+                                    style="width: 300px;">
+                                <p></p>
+
+                                <span>2.ใบประกอบการร้านค้า</span>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <button class="btn btn-warning" type="button" id="upload-style">
+                                            <i class="fa fa-upload"></i> แนบไฟล์
+                                        </button>
+                                    </div>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="Restaurant_business_ license">
+                                        <label class="custom-file-label" for="Restaurant_business_ license">Choose
+                                            file</label>
+                                    </div>
+                                </div>
+
+                                <input type="file" id="copy_house_registration  " style="display:none;" />
+                                <span>3.สำเนาทะเบียนบ้านของร้าน</span>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <button class="btn btn-warning" type="button" id="upload-style">
+                                            <i class="fa fa-upload"></i> แนบไฟล์
+                                        </button>
+                                    </div>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="Copy_res_house_registration">
+                                        <label class="custom-file-label" for="Copy_res_house_registration">Choose
+                                            file</label>
+                                    </div>
+                                </div>
+
+
+                                <span>4.รูปถ่ายร้านค้า</span>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <button class="btn btn-warning" type="button" id="upload-style">
+                                            <i class="fa fa-upload"></i> แนบไฟล์
+                                        </button>
+                                    </div>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="Restaurant_Photo">
+                                        <label class="custom-file-label" for="Restaurant_Photo">Choose file</label>
+                                    </div>
+                                </div>
+
+                                <span>5.สำเนาหน้าสมุดธนาคาร</span>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <button class="btn btn-warning" type="button" id="upload-style">
+                                            <i class="fa fa-upload"></i> แนบไฟล์
+                                        </button>
+                                    </div>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="Copy_bank_book">
+                                        <label class="custom-file-label" for="Copy_bank_book">Choose file</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="flex-item" style="margin-left: 50px;align-self: flex-start;">
+                            <div style="border: 5px solid #ffc000;border-radius: 5px;margin:0px auto; width: 100%;">
+                            </div>
+                            <p></p>
+                            <h3 id="head-font">ลงทะเบียนใกล้จะเสร็จสิ้นแล้ว</h3>
+                            <p>กรุณาดาวน์โหลดแอปพลิเคชั่น Food Merchant <br> เพื่อดำเนินการอัปโหลดเอกสาร</p>
+                            <button id="submitForm" type="submit" class="btn btn-warning btn-lg btn-block">ตกลง</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="/auto_province/AutoProvince.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+        // Call Auto Province Function
+        $('body').AutoProvince({
+            PROVINCE: '#province', // select div สำหรับรายชื่อจังหวัด
+            AMPHUR: '#amphur', // select div สำหรับรายชื่ออำเภอ
+            DISTRICT: '#district', // select div สำหรับรายชื่อตำบล
+            POSTCODE: '#postcode', // input field สำหรับรายชื่อรหัสไปรษณีย์
+            GEOGRAPHY: '#geography', // input field แสดงภาค
+            CURRENT_PROVINCE: 4, //  แสดงค่าเริ่มต้น ใส่ไอดีจังหวัดที่เคยเลือกไว้
+            CURRENT_AMPHUR: 4, // แสดงค่าเริ่มต้น  ใส่ไอดีอำเภอที่เคยเลือกไว้
+            CURRENT_DISTRICT: 1, // แสดงค่าเริ่มต้น  ใส่ไอดีตำบลที่เคยเลือกไว้
+            arrangeByName: true // กำหนดให้เรียงตามตัวอักษร
+        });
+
+        // hide or show password function
+        $("#show_hide_password").on('click', function (event) {
+            event.preventDefault();
+            if ($('#password').attr("type") == "text") {
+                $('#password').attr('type', 'password');
+                $('#show_hide_password i').addClass("fa-eye-slash");
+                $('#show_hide_password i').removeClass("fa-eye");
+            } else if ($('#password').attr("type") == "password") {
+                $('#password').attr('type', 'text');
+                $('#show_hide_password i').removeClass("fa-eye-slash");
+                $('#show_hide_password i').addClass("fa-eye");
+            }
+        });
+        $("#show_hide_Confirm_password").on('click', function (event) {
+            event.preventDefault();
+            if ($('#confirm_password').attr("type") == "text") {
+                $('#confirm_password').attr('type', 'password');
+                $('#show_hide_Confirm_password i').addClass("fa-eye-slash");
+                $('#show_hide_Confirm_password i').removeClass("fa-eye");
+            } else if ($('#confirm_password').attr("type") == "password") {
+                $('#confirm_password').attr('type', 'text');
+                $('#show_hide_Confirm_password i').removeClass("fa-eye-slash");
+                $('#show_hide_Confirm_password i').addClass("fa-eye");
+            }
+        });
+    })
+    // set default checkbox to uncheck
+    $('#flexCheckDefault').prop('checked', false);
+
+    // btn goto next element
+    $('.button').click(function () {
+        $(this).parent().hide().next().show();//hide parent and show next
+        return false;
+    });
+    // btn goto previous element
+    $('.button-back').click(function () {
+        $(this).parent().hide().prev().show();//hide parent and show previous
+        return false;
+    });
+
+    /*reCAPTCHA callback*/
+    function reCAPTCHACallback() {
+        $('#submitBtn').removeAttr('disabled');
+    };
+
+    // checkbox and reCAPTCHA validation
+    $('#submitBtn').click(function () {
+        let isChecked = $('#flexCheckDefault').is(':checked');
+        if (!isChecked) {
+            alert('กรุณายอมรับเงื่อนไขและข้อกำหนด');
+        }
+        else {
+            //$('#reCAPTCHA').submit();
+            $(this).parent().hide().next().show();///hide parent and show next 
+        }
+        return false;
+    });
+
+
+</script>
