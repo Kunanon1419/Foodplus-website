@@ -3,26 +3,21 @@
         font-family: foodplus-light;
         src: url('/font/rsufont/RSU_light.ttf')
     }
-
     * {
         box-sizing: border-box;
         padding: 0;
         margin: 0;
         font-family: 'foodplus-light';
     }
-
     #f_shadow {
         text-shadow: 2px 2px 11px rgba(0, 0, 0, 0.8);
         margin: 0;
     }
-
     html,
     body {
         height: 100%;
         width: 100%;
-
     }
-
     /* set fullscreen */
     html,
     body {
@@ -31,23 +26,19 @@
         margin: 0;
         padding: 0;
     }
-
     #wrapper {
         min-height: 100vh;
         min-width: 100%;
     }
-
     /* font_style */
     #head-font {
         color: #ffc000;
         font-weight: bold;
     }
-
     #upload-style {
         color: #fff;
         text-shadow: 2px 2px 11px rgba(0, 0, 0, 0.3);
     }
-
     /*Grid layout*/
     .container {
         display: grid;
@@ -55,40 +46,32 @@
             'header header'1fr 'main main'9fr /1fr;
         padding: 0;
     }
-
     header {
         grid-area: header;
     }
-
     .main {
         grid-area: main;
         background-image: url(/images/Restaurant/food-compress.jpg);
         background-size: cover;
         background-repeat: no-repeat;
     }
-
     /*flex parent*/
     .flex-container {
         display: flex;
         align-items: center;
         flex-wrap: wrap;
     }
-
     .flex-container>.flex-items {
         color: grey;
-
     }
-
     .flex-container>* {
         text-shadow: 2px 2px 11px rgba(0, 0, 0, 0.1);
     }
-
     .flex-img-item {
         max-width: 100vh;
         max-height: 100vh;
         ;
     }
-
     .flex-items-box {
         min-width: 500px;
         width: auto;
@@ -99,26 +82,22 @@
         /*shadow box*/
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     }
-
     .flex-item {
         align-items: flex-start;
         flex-wrap: wrap;
         flex-direction: column;
     }
-
     /*wrapper*/
     .break {
         flex-basis: 100%;
         height: 0;
     }
-
     /*input */
     .form-control {
         border: 2px solid grey;
         width: 480px;
         border-radius: 10px;
     }
-
     .form-control-sm {
         flex-direction: row;
         margin: 5px 0px;
@@ -128,35 +107,27 @@
         border-radius: 25px;
         height: 39.2px;
     }
-
     .input-group-addon {
         border-radius: 10px;
     }
-
     .btnOnIcon {
         background: none;
         border: none;
     }
-
     /*Display*/
     #div1 {}
-
     #div2 {
         display: none;
     }
-
     #div3 {
         display: none;
     }
-
     #div4 {
         display: none;
     }
-
     #div5 {
         display: none;
     }
-
     #div6 {
         display: none;
     }
@@ -464,7 +435,6 @@
 <script type="text/javascript" src="/auto_province/AutoProvince.min.js"></script>
 <script src="/js/Restaurant_register.js"></script>
 <script>
-
     /*
       Function to carry out the actual PUT request to S3 using the signed request from the app.
     */
@@ -485,7 +455,6 @@
         };
         xhr.send(file);
     }
-
     /*
       Function to get the temporary signed request from the app.
       If request successful, continue to upload the file using this signed
@@ -507,7 +476,6 @@
         };
         xhr.send();
     }
-
     /*
      Function called when file input updated. If there is a file selected, then
      start upload procedure by asking for a signed request from the app.
@@ -524,7 +492,6 @@
         }
         getSignedRequest(file,input_name,tel);
     }
-
     /*
      Bind listeners when the page loads.
     */
@@ -534,5 +501,4 @@
         });
         //document.getElementById('file-input').onchange = initUpload;
     })();
-
 </script>
