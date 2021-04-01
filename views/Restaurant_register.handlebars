@@ -195,11 +195,11 @@
                             aria-label="default input example" required>
                         <p></p>
                         <h5>เลขประจำตัวประชาชน 13 หลัก</h5>
-                        <input name="Id_card_number" class="form-control" type="text" placeholder=""
+                        <input name="Id_card_number"  id="Id_card_number" class="form-control" type="text" placeholder=""
                             aria-label="default input example" required>
                         <p></p>
                         <h5>หมายเลขบัญชีธนาคารไทยพาณิชย์</h5>
-                        <input name="Account_number" class="form-control" type="text" placeholder=""
+                        <input name="Account_number" id="Account_number" class="form-control" type="text" placeholder=""
                             aria-label="default input example" required>
                         <p></p>
                         <div class="break"></div>
@@ -381,12 +381,12 @@
                                             file</label>
                                     </div>
                                 </div>
-                                <input id="Id_exp_datepicker" onkeydown="return false"
+                                <input id="Id_exp_datepicker" name="Id_exp_datepicker" onkeydown="return false"
                                     placeholder="วันหมดอายุบัตรประชาชน" style="width: 300px;border: 1px solid gray;">
                                 <script>
                                     $('#Id_exp_datepicker').datepicker({
                                         uiLibrary: 'bootstrap4',
-                                        format: 'mm/dd/yyyy'
+                                        format: 'yyyy/mm/dd'
                                     });
                                 </script>
 
