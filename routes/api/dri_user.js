@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../api/db_connection');
+const uuid = require('uuid');
 router.post('/', (req, res) => {
     const driver_info = {
         first_name: req.body.first_name,
@@ -25,7 +26,7 @@ router.post('/', (req, res) => {
     }
     // INSERTING USER INTO DATABASE
     db.execute("INSERT INTO `Driver` VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
-            ['ID_test', driver_info.email, driver_info.password, driver_info.first_name, driver_info.last_name, `${driver_info.province} ${driver_info.ampur} ${driver_info.district}`,
+            [uuid.v4(), driver_info.email, driver_info.password, driver_info.first_name, driver_info.last_name, `${driver_info.province} ${driver_info.ampur} ${driver_info.district}`,
                 driver_info.Id_card_number, driver_info.tel, 'รอดำเนินการ', 'ไทยพาณิชย์', '0123456789', '', 0, driver_info.url_Copy_Driver_Id_card_number,
                 driver_info.url_Copy_driver_license, driver_info.url_copy_Act_legislation, driver_info.Id_exp_datepicker, driver_info.Driver_exp_datepicker,
                 driver_info.Act_legislation_exp_date, '', 000000, 0
