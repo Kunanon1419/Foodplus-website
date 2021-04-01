@@ -53,7 +53,7 @@ $('#flexCheckDefault').change(function () {
 });
 
 // btn goto next element
-$('.btn:not(#search_location,#show_hide_password,#show_hide_Confirm_password,#submitForm)').not('[id^="upload-"]')
+$('.btn:not(#search_location,#show_hide_password,#show_hide_Confirm_password,#submitForm,.btn-outline-secondary)').not('[id^="upload-"]')
 .click(function () {
     $(this).parent().hide().next().show(); //hide parent and show next
     //e.preventDefault();
