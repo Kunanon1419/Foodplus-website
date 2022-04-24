@@ -10,7 +10,7 @@ const cokieSession = require('cookie-session');
 const bcrypt = require('bcrypt');
 const moment = require('moment');
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 //const dbConnection = require('./db_root_connection');
 
 //aws.config.region = 'ap-southeast-1';
@@ -26,8 +26,6 @@ const {
 const logger = require('./middleware/logger');
 /*Template engine*/
 const exphbs = require('express-handlebars');
-/*set up api */
-const res_users = require('./res_users');
 
 /* BodyParser */
 app.use(express.urlencoded({
@@ -61,19 +59,8 @@ app.engine('handlebars', exphbs({
     partialsDir: path.join(__dirname, 'views/partials')
 }));
 app.set('view engine', 'handlebars');
-
-
-
-app.get('/index', (req, res) => {
-    res.render('index', {
-        title: 'user app',
-        users
-    })
-})
-
 app.use('/api/res_user', require('./routes/api/res_user'));
 app.use('/api/dri_user', require('./routes/api/dri_user'));
-app.use('/api/users', require('./routes/api/users'));
 
 //Route
 // Home route

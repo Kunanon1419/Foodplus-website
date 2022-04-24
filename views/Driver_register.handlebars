@@ -166,16 +166,33 @@
                     
                     <label for="">อีเมล</label>
                     <input id="email" class="form-control" name="email" type="text" placeholder="" aria-label="default input example">
+                    <div class="flex-container" style="margin: 10px auto;">
+                            <div class="flex-item" style="width: 500px;">
+                                <h5>ธนาคาร</h5>
+                                <select name="bank" class="custom-select" title="เลือกประเภทธุรกิจ">
+                                    <option value="ธนาคารกรุงเทพ">ธนาคารกรุงเทพ</option>
+                                    <option value="ธนาคารกสิกรไทย">ธนาคารกสิกรไทย</option>
+                                    <option value="ธนาคารกรุงไทย">ธนาคารกรุงไทย</option>
+                                    <option value="ธนาคารไทยพาณิชย์">ธนาคารไทยพาณิชย์</option>
+                                    <option value="ธนาคารกรุงศรีอยุธยา">ธนาคารกรุงศรีอยุธยา</option>
+                                    <option value="ธนาคารออมสิน">ธนาคารออมสิน</option>
+                                    {{!-- {{#each res_type}}
+                                    <option>{{this}}</option>
+                                    {{/each}} --}}
+                                </select>
+                            </div>
+                        </div>
+                        <h5>หมายเลขบัญชี</h5>
+                        <input name="Account_number" id="Account_number" class="form-control" type="text" placeholder=""
+                            aria-label="default input example" required>
+                        <p></p>
+                        <div class="break"></div>
                 </div>
                 <div class="flex-items">
-                    <label for="">เพศ</label>
-                    <select id="sex" name="sex" class="custom-select mb-2" style="border: 1px solid gray;">
-                        <option selected>กรุณาเลือก....</option>
-                        <option value="1">ชาย</option>
-                        <option value="2">หญิง</option>
-                    </select>
+                    
                 
                     <label for="">ที่อยู่ตามทะเบียนบ้าน</label>
+                    <input id="Address" name="Address" class="form-control" type="text" placeholder="" aria-label="default input example">
                     <div class="break"></div>
                     <label for="">จังหวัด</label>
                     <select id="province" name="province" class="custom-select"
@@ -297,8 +314,8 @@
                     <div style="border: 2px solid #ffc000;border-radius: 3px;margin-bottom: 10px;"></div>
                     <h3 id="head-font">ชำระค่าสมัคร</h3>
                     <p>400 บาทเลขที่บัญชี<br>
-                        bank_id bank_name<br>
-                        ชื่อบัญชี: bank_acc_name
+                        0123456789 กสิกร<br>
+                        ชื่อบัญชี: ฟู๊ดพลัส
                     </p>
                     <div class="custom-file">
                         <input type="hidden" id="url_Money_transfer_slip" name="url_Money_transfer_slip"

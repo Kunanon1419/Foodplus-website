@@ -198,11 +198,7 @@
                         <input name="Id_card_number"  id="Id_card_number" class="form-control" type="text" placeholder=""
                             aria-label="default input example" required>
                         <p></p>
-                        <h5>หมายเลขบัญชีธนาคารไทยพาณิชย์</h5>
-                        <input name="Account_number" id="Account_number" class="form-control" type="text" placeholder=""
-                            aria-label="default input example" required>
-                        <p></p>
-                        <div class="break"></div>
+                        
                         <h5>อีเมล</h5>
                         <div class="break"></div>
                         <input name="email" class="form-control" type="email" placeholder=""
@@ -240,23 +236,58 @@
                         <h5>ชื่อร้าน</h5>
                         <input name="restaurant_name" class="form-control" type="text" placeholder=""
                             aria-label="default input example">
+                        <div class="flex-container" style="margin: 10px auto;"></div>
                         <div class="flex-container" style="margin: 10px auto;">
                             <div class="flex-item" style="width: 480px;">
-                                <h5>ประเภทธุรกิจ</h5>
-                                <select name="restaurant_type_name" class="custom-select" title="เลือกประเภทธุรกิจ">
+                                <h5>ธนาคาร</h5>
+                                <select name="bank" class="custom-select" title="">
                                     {{#each res_type}}
                                     <option>{{this}}</option>
                                     {{/each}}
                                 </select>
                             </div>
                         </div>
+                        <h5>หมายเลขบัญชี</h5>
+                        <input name="Account_number" id="Account_number" class="form-control" type="text" placeholder=""
+                            aria-label="default input example" required>
+                        <p></p>
                         <div class="break"></div>
+                        {{!-- <div class="flex-container" style="margin: 10px auto;">
+                            <div class="flex-item" style="width: 480px;">
+                                <h5>ประเภทร้านอาหาร</h5>
+                                <select name="restaurant_type_name" class="custom-select" title="เลือกประเภทธุรกิจ">
+                                    {{#each res_type}}
+                                    <option>{{this}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                        </div> --}}
+                        <h5 style="margin-top: 10px;">จังหวัด</h5>
+                        <select id="province" name="province" class="custom-select">
+                            <option selected>กรุณาเลือกจังหวัด</option>
+                        </select>
+                        <div class="flex-container" style="margin: 10px auto;">
+                            <div class="flex-item" style="width: 235px;">
+                                <h5>แขวง/อำเภอ</h5>
+                                <select id="amphur" name="amphur" class="custom-select" style="margin-right: 4px;">
+                                    <option></option>
+                                </select>
+                            </div>
+                            <div class="flex-item" style="width: 235px;">
+                                <h5>เขต/ตำบล</h5>
+                                <select id="district" name="district" class="custom-select" style="margin-left: 4px;">
+                                    <option></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="break"></div>
+                        <div class="flex-container" style="margin: 10px auto;"></div>
                     </div>
                     <button type="button" class="btn btn-warning btn-lg btn-block" onclick="">ถัดไป</button>
                 </div>
 
                 {{!-- div 4 --}}
-                <div class="flex-items-box" id="div4">
+                {{!-- <div class="flex-items-box" id="div4">
                     <h1 id="head-font">ลงทะเบียนร้านเดลิเวอรี่</h1>
                     <div class="break"></div>
                     <h3>ที่ตั้งธุรกิจ</h3>
@@ -273,7 +304,7 @@
                         </div>
                     </div>
 
-                    <h5 style="margin-top: 10px;">ที่อยู่ธุรกิจ</h5>
+                    <h5 style="margin-top: 10px;">ที่อยู่</h5>
                     <input name="address" class="form-control" type="text" placeholder=""
                         aria-label="default input example">
 
@@ -297,7 +328,7 @@
                     </div>
                     <div class="break"></div>
                     <button type="button" class="btn btn-warning btn-lg btn-block" onclick="">ถัดไป</button>
-                </div>
+                </div> --}}
 
                 {{!-- div 5 --}}
                 <div class="flex-items-box" id="div5">
