@@ -13,3 +13,4 @@ sudo yarn global add heroku
 -----------------------------------
 heroku logs --tail --app web-foodplus-prod
 heroku logs --tail --app web-foodplus-dev
+heroku logs --tail --app mobile-customer-api

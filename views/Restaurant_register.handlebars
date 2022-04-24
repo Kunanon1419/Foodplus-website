@@ -20,7 +20,6 @@
     body {
         height: 100%;
         width: 100%;
-
     }
 
     /* set fullscreen */
@@ -76,7 +75,6 @@
 
     .flex-container>.flex-items {
         color: grey;
-
     }
 
     .flex-container>* {
@@ -138,68 +136,6 @@
         border: none;
     }
 
-    /* button Accept,Upload,Next*/
-    .button {
-        display: inline-block;
-        padding: 0.2rem 1.25rem;
-        border-radius: 10rem;
-        color: #fff;
-        text-transform: uppercase;
-        font-size: 1.2rem;
-        letter-spacing: 0.15rem;
-        transition: all 0.3s;
-        position: relative;
-        overflow: hidden;
-        z-index: 1;
-        width: 100%;
-        height: 40px;
-        text-decoration: none;
-        /*margin-top: 10px;
-        margin-bottom: 5px;*/
-        margin: auto;
-        box-shadow: 2px 2px 11px rgba(0, 0, 0, 0.2);
-        text-shadow: 2px 2px 11px rgba(0, 0, 0, 0.5);
-    }
-
-    .button:after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: #ffc000;
-        border-radius: 10rem;
-        z-index: -2;
-    }
-
-    .button:before {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 0%;
-        height: 100%;
-        background-color: #ff7700;
-        transition: all 0.3s;
-        border-radius: 10rem;
-        z-index: -1;
-    }
-
-    .button:hover {
-        color: #fff;
-        text-decoration: none;
-    }
-
-    .button:hover:before {
-        width: 100%;
-    }
-
-    button {
-        color: #fff;
-        text-shadow: 2px 2px 11px rgba(0, 0, 0, 0.3);
-    }
-
     /*Display*/
     #div1 {}
 
@@ -222,8 +158,6 @@
     #div6 {
         display: none;
     }
-
-    .valid_btn {}
 </style>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <div class="container" id="wrapper">
@@ -257,18 +191,14 @@
                         </div>
                         <p></p>
                         <h5>หมายเลขโทรศัพท์</h5>
-                        <input name="tel" class="form-control" type="text" placeholder=""
+                        <input name="tel" id="tel" class="form-control" type="text" placeholder=""
                             aria-label="default input example" required>
                         <p></p>
                         <h5>เลขประจำตัวประชาชน 13 หลัก</h5>
-                        <input name="tel" class="form-control" type="text" placeholder=""
+                        <input name="Id_card_number"  id="Id_card_number" class="form-control" type="text" placeholder=""
                             aria-label="default input example" required>
                         <p></p>
-                        <h5>หมายเลขบัญชีธนาคารไทยพาณิชย์</h5>
-                        <input name="tel" class="form-control" type="text" placeholder=""
-                            aria-label="default input example" required>
-                        <p></p>
-                        <div class="break"></div>
+                        
                         <h5>อีเมล</h5>
                         <div class="break"></div>
                         <input name="email" class="form-control" type="email" placeholder=""
@@ -277,7 +207,8 @@
                     </div>
                     {{!-- <button type="submit" class="btn btn-warning btn-lg btn-block valid_btn"
                         onclick="">ถัดไป</button> --}}
-                    <a id="next" href="#" class="button" style="text-align: center;">ถัดไป</a>
+                    {{!-- <a id="next" href="#" class="button" style="text-align: center;">ถัดไป</a> --}}
+                    <button type="button" class="btn btn-warning btn-lg btn-block" onclick="">ถัดไป</button>
                 </div>
 
                 {{!-- div 2 --}}
@@ -305,23 +236,58 @@
                         <h5>ชื่อร้าน</h5>
                         <input name="restaurant_name" class="form-control" type="text" placeholder=""
                             aria-label="default input example">
+                        <div class="flex-container" style="margin: 10px auto;"></div>
                         <div class="flex-container" style="margin: 10px auto;">
                             <div class="flex-item" style="width: 480px;">
-                                <h5>ประเภทธุรกิจ</h5>
-                                <select name="restaurant_type_name" class="custom-select" title="เลือกประเภทธุรกิจ">
+                                <h5>ธนาคาร</h5>
+                                <select name="bank" class="custom-select" title="">
                                     {{#each res_type}}
                                     <option>{{this}}</option>
                                     {{/each}}
                                 </select>
                             </div>
                         </div>
+                        <h5>หมายเลขบัญชี</h5>
+                        <input name="Account_number" id="Account_number" class="form-control" type="text" placeholder=""
+                            aria-label="default input example" required>
+                        <p></p>
                         <div class="break"></div>
+                        {{!-- <div class="flex-container" style="margin: 10px auto;">
+                            <div class="flex-item" style="width: 480px;">
+                                <h5>ประเภทร้านอาหาร</h5>
+                                <select name="restaurant_type_name" class="custom-select" title="เลือกประเภทธุรกิจ">
+                                    {{#each res_type}}
+                                    <option>{{this}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                        </div> --}}
+                        <h5 style="margin-top: 10px;">จังหวัด</h5>
+                        <select id="province" name="province" class="custom-select">
+                            <option selected>กรุณาเลือกจังหวัด</option>
+                        </select>
+                        <div class="flex-container" style="margin: 10px auto;">
+                            <div class="flex-item" style="width: 235px;">
+                                <h5>แขวง/อำเภอ</h5>
+                                <select id="amphur" name="amphur" class="custom-select" style="margin-right: 4px;">
+                                    <option></option>
+                                </select>
+                            </div>
+                            <div class="flex-item" style="width: 235px;">
+                                <h5>เขต/ตำบล</h5>
+                                <select id="district" name="district" class="custom-select" style="margin-left: 4px;">
+                                    <option></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="break"></div>
+                        <div class="flex-container" style="margin: 10px auto;"></div>
                     </div>
-                    <a id="next" href="#" class="button" style="text-align: center;">ถัดไป</a>
+                    <button type="button" class="btn btn-warning btn-lg btn-block" onclick="">ถัดไป</button>
                 </div>
 
                 {{!-- div 4 --}}
-                <div class="flex-items-box" id="div4">
+                {{!-- <div class="flex-items-box" id="div4">
                     <h1 id="head-font">ลงทะเบียนร้านเดลิเวอรี่</h1>
                     <div class="break"></div>
                     <h3>ที่ตั้งธุรกิจ</h3>
@@ -338,7 +304,7 @@
                         </div>
                     </div>
 
-                    <h5 style="margin-top: 10px;">ที่อยู่ธุรกิจ</h5>
+                    <h5 style="margin-top: 10px;">ที่อยู่</h5>
                     <input name="address" class="form-control" type="text" placeholder=""
                         aria-label="default input example">
 
@@ -361,8 +327,8 @@
                         </div>
                     </div>
                     <div class="break"></div>
-                    <a id="next" href="#" class="button" style="text-align: center;">ต่อไป</a>
-                </div>
+                    <button type="button" class="btn btn-warning btn-lg btn-block" onclick="">ถัดไป</button>
+                </div> --}}
 
                 {{!-- div 5 --}}
                 <div class="flex-items-box" id="div5">
@@ -414,7 +380,8 @@
                         {{!-- <button id="submitBtn" type="submit" disabled class="btn btn-warning btn-lg btn-block"
                             onclick="document.getElementById('reCAPTCHA').submit();">ลงทะเบียน</button> --}}
                     </div>
-                    <button id="submitBtn" type="submit" class="btn btn-warning btn-lg btn-block">ลงทะเบียน</button>
+                    <button id="submitBtn" disabled type="button"
+                        class="btn btn-warning btn-lg btn-block">ลงทะเบียน</button>
                 </div>
 
                 {{!-- div 6 --}}
@@ -430,43 +397,59 @@
                                     1.สำเนาบัตรประชาชน
                                 </span>
                                 <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <button class="btn btn-warning" type="button" id="upload-style">
+                                    {{!-- <div class="input-group-prepend">
+                                        <button class="btn btn-warning" type="submit"
+                                            id="upload-Copy_Res_Id_card_number">
                                             <i class="fa fa-upload"></i> แนบไฟล์
                                         </button>
-                                    </div>
+                                    </div> --}}
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="Copy_Id_card_number">
-                                        <label class="custom-file-label" for="Copy_Id_card_number">Choose file</label>
+                                        <input type="hidden" id="url_Copy_Res_Id_card_number"
+                                            name="url_Copy_Res_Id_card_number" value="">
+                                        <input type="file" class="custom-file-input" id="Copy_Res_Id_card_number"
+                                            name="Copy_Res_Id_card_number">
+                                        <label class="custom-file-label" for="Copy_Res_Id_card_number">Choose
+                                            file</label>
                                     </div>
                                 </div>
-                                <input id="Id_exp_datepicker" onkeydown="return false" placeholder="วันหมดอายุเอกสาร"
-                                    style="width: 300px;">
-                                <p></p>
+                                <input id="Id_exp_datepicker" name="Id_exp_datepicker" onkeydown="return false"
+                                    placeholder="วันหมดอายุบัตรประชาชน" style="width: 300px;border: 1px solid gray;">
+                                <script>
+                                    $('#Id_exp_datepicker').datepicker({
+                                        uiLibrary: 'bootstrap4',
+                                        format: 'yyyy/mm/dd'
+                                    });
+                                </script>
+
 
                                 <span>2.ใบประกอบการร้านค้า</span>
                                 <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <button class="btn btn-warning" type="button" id="upload-style">
+                                    {{!-- <div class="input-group-prepend">
+                                        <button class="btn btn-warning" type="button"
+                                            id="upload-Restaurant_business_license">
                                             <i class="fa fa-upload"></i> แนบไฟล์
                                         </button>
-                                    </div>
+                                    </div> --}}
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="Restaurant_business_ license">
-                                        <label class="custom-file-label" for="Restaurant_business_ license">Choose
+                                        <input type="hidden" id="url_Restaurant_business_license"
+                                            name="url_Restaurant_business_license" value="">
+                                        <input type="file" class="custom-file-input" id="Restaurant_business_license">
+                                        <label class="custom-file-label" for="Restaurant_business_license">Choose
                                             file</label>
                                     </div>
                                 </div>
 
-                                <input type="file" id="copy_house_registration  " style="display:none;" />
                                 <span>3.สำเนาทะเบียนบ้านของร้าน</span>
                                 <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <button class="btn btn-warning" type="button" id="upload-style">
+                                    {{!-- <div class="input-group-prepend">
+                                        <button class="btn btn-warning" type="button"
+                                            id="upload-Copy_res_house_registratione">
                                             <i class="fa fa-upload"></i> แนบไฟล์
                                         </button>
-                                    </div>
+                                    </div> --}}
                                     <div class="custom-file">
+                                        <input type="hidden" id="url_Copy_res_house_registration"
+                                            name="url_Copy_res_house_registration" value="">
                                         <input type="file" class="custom-file-input" id="Copy_res_house_registration">
                                         <label class="custom-file-label" for="Copy_res_house_registration">Choose
                                             file</label>
@@ -476,12 +459,14 @@
 
                                 <span>4.รูปถ่ายร้านค้า</span>
                                 <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <button class="btn btn-warning" type="button" id="upload-style">
+                                    {{!-- <div class="input-group-prepend">
+                                        <button class="btn btn-warning" type="button" id="upload-Restaurant_Photo">
                                             <i class="fa fa-upload"></i> แนบไฟล์
                                         </button>
-                                    </div>
+                                    </div> --}}
                                     <div class="custom-file">
+                                        <input type="hidden" id="url_Restaurant_Photo" name="url_Restaurant_Photo"
+                                            value="">
                                         <input type="file" class="custom-file-input" id="Restaurant_Photo">
                                         <label class="custom-file-label" for="Restaurant_Photo">Choose file</label>
                                     </div>
@@ -489,12 +474,13 @@
 
                                 <span>5.สำเนาหน้าสมุดธนาคาร</span>
                                 <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <button class="btn btn-warning" type="button" id="upload-style">
+                                    {{!-- <div class="input-group-prepend">
+                                        <button class="btn btn-warning" type="button" id="upload-Copy_bank_book">
                                             <i class="fa fa-upload"></i> แนบไฟล์
                                         </button>
-                                    </div>
+                                    </div> --}}
                                     <div class="custom-file">
+                                        <input type="hidden" id="url_Copy_bank_book" name="url_Copy_bank_book" value="">
                                         <input type="file" class="custom-file-input" id="Copy_bank_book">
                                         <label class="custom-file-label" for="Copy_bank_book">Choose file</label>
                                     </div>
@@ -517,79 +503,72 @@
     </div>
 </div>
 <script type="text/javascript" src="/auto_province/AutoProvince.min.js"></script>
+<script src="/js/Restaurant_register.js"></script>
 <script>
-
-    $(document).ready(function () {
-        // Call Auto Province Function
-        $('body').AutoProvince({
-            PROVINCE: '#province', // select div สำหรับรายชื่อจังหวัด
-            AMPHUR: '#amphur', // select div สำหรับรายชื่ออำเภอ
-            DISTRICT: '#district', // select div สำหรับรายชื่อตำบล
-            POSTCODE: '#postcode', // input field สำหรับรายชื่อรหัสไปรษณีย์
-            GEOGRAPHY: '#geography', // input field แสดงภาค
-            CURRENT_PROVINCE: 4, //  แสดงค่าเริ่มต้น ใส่ไอดีจังหวัดที่เคยเลือกไว้
-            CURRENT_AMPHUR: 4, // แสดงค่าเริ่มต้น  ใส่ไอดีอำเภอที่เคยเลือกไว้
-            CURRENT_DISTRICT: 1, // แสดงค่าเริ่มต้น  ใส่ไอดีตำบลที่เคยเลือกไว้
-            arrangeByName: true // กำหนดให้เรียงตามตัวอักษร
-        });
-
-        // hide or show password function
-        $("#show_hide_password").on('click', function (event) {
-            event.preventDefault();
-            if ($('#password').attr("type") == "text") {
-                $('#password').attr('type', 'password');
-                $('#show_hide_password i').addClass("fa-eye-slash");
-                $('#show_hide_password i').removeClass("fa-eye");
-            } else if ($('#password').attr("type") == "password") {
-                $('#password').attr('type', 'text');
-                $('#show_hide_password i').removeClass("fa-eye-slash");
-                $('#show_hide_password i').addClass("fa-eye");
+    /*
+      Function to carry out the actual PUT request to S3 using the signed request from the app.
+    */
+    function uploadFile(file, signedRequest, url, input_url) {
+        const xhr = new XMLHttpRequest();
+        xhr.open('PUT', signedRequest);
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    $(input_url).val(url);
+                    const test = $(input_url).val();
+                    alert(test);
+                }
+                else {
+                    alert(`Error:${xhr.status} Could not upload file.`);
+                }
             }
-        });
-        $("#show_hide_Confirm_password").on('click', function (event) {
-            event.preventDefault();
-            if ($('#confirm_password').attr("type") == "text") {
-                $('#confirm_password').attr('type', 'password');
-                $('#show_hide_Confirm_password i').addClass("fa-eye-slash");
-                $('#show_hide_Confirm_password i').removeClass("fa-eye");
-            } else if ($('#confirm_password').attr("type") == "password") {
-                $('#confirm_password').attr('type', 'text');
-                $('#show_hide_Confirm_password i').removeClass("fa-eye-slash");
-                $('#show_hide_Confirm_password i').addClass("fa-eye");
+        };
+        xhr.send(file);
+    }
+    /*
+      Function to get the temporary signed request from the app.
+      If request successful, continue to upload the file using this signed
+      request.
+    */
+    function getSignedRequest(file, input_name, tel) {
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}&input-name=${input_name}&tel=${tel}`);
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    const response = JSON.parse(xhr.responseText);
+                    uploadFile(file, response.signedRequest, response.url, response.input_url);
+                }
+                else {
+                    alert('Could not get signed URL.');
+                }
             }
+        };
+        xhr.send();
+    }
+    /*
+     Function called when file input updated. If there is a file selected, then
+     start upload procedure by asking for a signed request from the app.
+    */
+    function initUpload(e) {
+        //const files = document.getElementById('file-input').files;
+        const files = document.getElementById(e).files;
+        const file = files[0];
+        const input_name = e;
+        const tel = $('#tel').val();
+        //alert(`${input_name} ${tel}`)
+        if (file == null) {
+            return alert('No file selected.');
+        }
+        getSignedRequest(file, input_name, tel);
+    }
+    /*
+     Bind listeners when the page loads.
+    */
+    (() => {
+        $('.custom-file-input').change(function (e) {
+            initUpload(e.target.id);
         });
-    })
-    // set default checkbox to uncheck
-    $('#flexCheckDefault').prop('checked', false);
-
-    // btn goto next element
-    $('.button').click(function () {
-        $(this).parent().hide().next().show();//hide parent and show next
-        return false;
-    });
-    // btn goto previous element
-    $('.button-back').click(function () {
-        $(this).parent().hide().prev().show();//hide parent and show previous
-        return false;
-    });
-
-    /*reCAPTCHA callback*/
-    function reCAPTCHACallback() {
-        $('#submitBtn').removeAttr('disabled');
-    };
-
-    // checkbox and reCAPTCHA validation
-    $('#submitBtn').click(function () {
-        let isChecked = $('#flexCheckDefault').is(':checked');
-        if (!isChecked) {
-            alert('กรุณายอมรับเงื่อนไขและข้อกำหนด');
-        }
-        else {
-            //$('#reCAPTCHA').submit();
-            $(this).parent().hide().next().show();///hide parent and show next 
-        }
-        return false;
-    });
-
-
+        //document.getElementById('file-input').onchange = initUpload;
+    })();
 </script>
